@@ -27,62 +27,49 @@
                                 </AdornerDecorator>
                             </Border>
 
-                            <DockPanel Height="30"
+                        <DockPanel Height="30"
                                    VerticalAlignment="Top"
-                                   LastChildFill="False">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.1*"  />
-                                    <ColumnDefinition Width="0.45*" />
-                                    <ColumnDefinition Width="0.45*" />
-                                </Grid.ColumnDefinitions>
+                                   LastChildFill="True"
+                                   HorizontalAlignment="Stretch">
 
-                                <StackPanel Grid.Row="0"
-                                       Grid.Column="1">
-                                    <TextBlock Margin="5,0,0,0"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       FontSize="16"
-                                       Grid.Row="0"
-                                       Grid.Column="1"    
-                                       Foreground="#5F5D60"
-                                       Text="Invoice Application" />
-                                </StackPanel>
-
-                                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
-                                    <Button x:Name="btnClose"
+                            <Button x:Name="btnClose"
                                     Style="{DynamicResource CustomSystemHeaderButton}"
                                     Width="15"
                                     Height="15"
                                     Margin="5"
+                                    DockPanel.Dock="Left"
                                     Click="btnClose_Click"
                                     Background="#EF5D58"
                                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
-                                    <Button x:Name="btnMinimize"
+                            <Button x:Name="btnMinimize"
                                     Style="{DynamicResource CustomSystemHeaderButton}"
                                     Width="15"
                                     Height="15"
                                     Margin="5"
+                                    DockPanel.Dock="Left"
                                     Background="#F3BF23"
                                     VerticalContentAlignment="Bottom"
                                     Click="btnMinimize_Click"
                                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
-                                    <Button x:Name="btnRestore"
+                            <Button x:Name="btnRestore"
                                     Style="{DynamicResource CustomSystemHeaderButton}"
                                     Width="15"
                                     Height="15"
                                     Margin="5" 
+                                    DockPanel.Dock="Left"
                                     Background="#CFCFD1"
                                     Click="btnRestore_Click"
                                     WindowChrome.IsHitTestVisibleInChrome="True" />
-                                </StackPanel>
 
-                                <StackPanel Grid.Column="2" Grid.Row="0">
-                                    <Label Content="" />
-                                </StackPanel>
-                            </Grid>
+                            <TextBlock Margin="5,0,0,0"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="16"
+                                       DockPanel.Dock="Right"    
+                                       Foreground="#5F5D60"
+                                       Text="Invoice Application" />
 
                         </DockPanel>
                         </Grid>
