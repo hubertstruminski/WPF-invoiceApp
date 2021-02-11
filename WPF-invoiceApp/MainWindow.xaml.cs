@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_invoiceApp.template;
 
 namespace WPF_invoiceApp
 {
@@ -25,29 +26,59 @@ namespace WPF_invoiceApp
             InitializeComponent();
         }
 
-        //private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var window = (Window)((FrameworkElement)sender).TemplatedParent;
-        //    window.WindowState = System.Windows.WindowState.Minimized;
-        //}
+        private void OnMyCompanyClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
-        //private void btnRestore_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var window = (Window)((FrameworkElement)sender).TemplatedParent;
-        //    if (window.WindowState == System.Windows.WindowState.Normal)
-        //    {
-        //        window.WindowState = System.Windows.WindowState.Maximized;
-        //    }
-        //    else
-        //    {
-        //        window.WindowState = System.Windows.WindowState.Normal;
-        //    }
-        //}
+        private void OnCustomersClick(object sender, RoutedEventArgs e)
+        {
 
-        //private void btnClose_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var window = (Window)((FrameworkElement)sender).TemplatedParent;
-        //    window.Close();
-        //}
+        }
+
+        private void OnInvoicesClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnProductsClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnTaxClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnNewTaxWindowClick(object sender, RoutedEventArgs e)
+        {
+            NewTaxWindow newTaxWindow = new NewTaxWindow();
+            newTaxWindow.ShowDialog();
+        }
+
+        private void OnNewCompanyClick(object sender, RoutedEventArgs e)
+        {
+            NewCompanyWindow newCompanyWindow = new NewCompanyWindow();
+            newCompanyWindow.ShowDialog();
+        }
+
+        private void OnNewCustomerWindowClick(object sender, RoutedEventArgs e)
+        {
+            NewCustomerWindow newCustomerWindow = new NewCustomerWindow();
+            newCustomerWindow.ShowDialog();
+        }
+
+        private void OnNewProductWindowClick(object sender, RoutedEventArgs e)
+        {
+            NewProductWindow newProductWindow = new NewProductWindow();
+            newProductWindow.ShowDialog();
+        }
+        
+        private void OnNewInvoiceWindowClick(object sender, RoutedEventArgs e)
+        {
+            NewInvoiceWindow newInvoiceWindow = new NewInvoiceWindow();
+            newInvoiceWindow.ShowDialog();
+        }
     }
 }

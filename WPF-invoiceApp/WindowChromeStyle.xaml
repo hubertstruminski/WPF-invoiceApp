@@ -69,7 +69,7 @@
                                        FontSize="16"
                                        DockPanel.Dock="Right"    
                                        Foreground="#5F5D60"
-                                       Text="Invoice Application" />
+                                       Text="{TemplateBinding Title}" />
 
                         </DockPanel>
                         </Grid>

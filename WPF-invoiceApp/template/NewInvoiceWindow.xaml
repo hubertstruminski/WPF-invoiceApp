@@ -1,0 +1,94 @@
+﻿<Window x:Class="WPF_invoiceApp.template.NewInvoiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_invoiceApp.template"
+        mc:Ignorable="d"
+        Title="New invoice" Height="750" Width="400"
+        Style="{DynamicResource CustomWindowStyle}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../WindowChromeStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="#EDEDED">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="65*" />
+            <ColumnDefinition Width="10*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="25" />
+            <RowDefinition />
+            <RowDefinition  Height="25"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="25" />
+            <RowDefinition />
+            <RowDefinition Height="25" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Number" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" />
+        <Label Content="Date" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" FontSize="12" />
+        <Label Content="Deadline" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" FontSize="12" />
+        <Label Content="Customer" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" FontSize="12" />
+        <Label Content="Product" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" FontSize="12" />
+        <Label Content="Comment" HorizontalAlignment="Center" Grid.Row="10" VerticalAlignment="Center" FontSize="12" />
+
+        <TextBox x:Name="numberTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <Calendar x:Name="datePicker" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center" DisplayDate="02/02/2021" />
+        <Calendar x:Name="deadlinePicker" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" DisplayDate="02/10/2021"/>
+        <Button x:Name="addCustomerButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Foreground="Gray" Content=">"  VerticalAlignment="Center" HorizontalContentAlignment="Right" />
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="8">
+            <Button x:Name="listProductsButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" HorizontalAlignment="Stretch" Foreground="Gray" Content=">"  VerticalAlignment="Center" HorizontalContentAlignment="Right" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="addProductButton" Grid.Column="0" Grid.Row="0" Margin="5" Content="Add product">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="onAddProductClearButton" Grid.Column="1" Grid.Row="0" Margin="5" Content="Clear list">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </StackPanel>
+        <TextBox x:Name="commentTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="10" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+
+        <Label x:Name="numberErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label x:Name="dateErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label x:Name="customerErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label x:Name="productErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+
+        <Label x:Name="invoiceIdLabel" Visibility="Hidden"  Content="invoiceId" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center"/>
+
+        <Button x:Name="saveInvoiceButton" Click="OnSaveInvoiceButtonAction" Foreground="White" Grid.Column="1" Grid.Row="13" Content="Save"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="118" Height="40" Background="#009AD3">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</Window>
