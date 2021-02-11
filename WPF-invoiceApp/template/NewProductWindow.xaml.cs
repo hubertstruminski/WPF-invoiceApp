@@ -17,6 +17,10 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewProductWindow : Window
     {
+        private const string PRICE_TEXT = "7412,36";
+        private const string DISCOUNT_TEXT = "6";
+        private const string UNIT_TEXT = "TIME";
+
         public NewProductWindow()
         {
             InitializeComponent();
@@ -35,15 +39,15 @@ namespace WPF_invoiceApp.template
         {
             if(string.IsNullOrWhiteSpace(priceTextField.Text))
             {
-                priceTextField.Text = "7412,36";
+                priceTextField.Text = PRICE_TEXT;
             }
         }
 
         private void PriceTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(priceTextField.Text.Equals("7412,36"))
+            if(priceTextField.Text.Equals(PRICE_TEXT))
             {
-                priceTextField.Text = "";
+                priceTextField.Text = string.Empty;
             }
         }
 
@@ -51,15 +55,15 @@ namespace WPF_invoiceApp.template
         {
             if(string.IsNullOrWhiteSpace(discountTextField.Text))
             {
-                discountTextField.Text = "6";
+                discountTextField.Text = DISCOUNT_TEXT;
             }
         }
 
         private void DiscountTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(discountTextField.Text.Equals("6"))
+            if(discountTextField.Text.Equals(DISCOUNT_TEXT))
             {
-                discountTextField.Text = "";
+                discountTextField.Text = string.Empty;
             }
         }
 
@@ -67,15 +71,15 @@ namespace WPF_invoiceApp.template
         {
             if(string.IsNullOrWhiteSpace(unitTextField.Text))
             {
-                unitTextField.Text = "TIME";
+                unitTextField.Text = UNIT_TEXT;
             }
         }
 
         private void UnitTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(unitTextField.Text.Equals("TIME"))
+            if(unitTextField.Text.Equals(UNIT_TEXT))
             {
-                unitTextField.Text = "";
+                unitTextField.Text = string.Empty;
             }
         }
 

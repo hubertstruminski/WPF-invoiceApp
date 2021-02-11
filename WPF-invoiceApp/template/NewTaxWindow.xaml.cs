@@ -17,6 +17,10 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewTaxWindow : Window
     {
+        private const string TAX_AMOUNT_TEXT = "23%";
+        private const string DESCRIPTION_TEXT = "VAT - new amount for customers";
+        private const string NAME_TEXT = "VAT";
+
         public NewTaxWindow()
         {
             InitializeComponent();
@@ -34,15 +38,15 @@ namespace WPF_invoiceApp.template
         private void TaxAmountTextField_LostFocus(object sender, RoutedEventArgs e)
         {
             if(string.IsNullOrWhiteSpace(taxAmountTextField.Text)) {
-                taxAmountTextField.Text = "23%";
+                taxAmountTextField.Text = TAX_AMOUNT_TEXT;
             }
         }
 
         private void TaxAmountTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(taxAmountTextField.Text.Equals("23%"))
+            if(taxAmountTextField.Text.Equals(TAX_AMOUNT_TEXT))
             {
-                taxAmountTextField.Text = "";
+                taxAmountTextField.Text = string.Empty;
             }
         }
 
@@ -50,15 +54,15 @@ namespace WPF_invoiceApp.template
         {
             if(string.IsNullOrWhiteSpace(descriptionTextField.Text))
             {
-                descriptionTextField.Text = "VAT - new amount for customers";
+                descriptionTextField.Text = DESCRIPTION_TEXT;
             }
         }
 
         private void DescriptionTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(descriptionTextField.Text.Equals("VAT - new amount for customers"))
+            if(descriptionTextField.Text.Equals(DESCRIPTION_TEXT))
             {
-                descriptionTextField.Text = "";
+                descriptionTextField.Text = string.Empty;
             }
         }
 
@@ -66,15 +70,15 @@ namespace WPF_invoiceApp.template
         {
             if(string.IsNullOrWhiteSpace(nameTextField.Text))
             {
-                nameTextField.Text = "VAT";
+                nameTextField.Text = NAME_TEXT;
             }
         }
 
         private void NameTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(nameTextField.Text.Equals("VAT"))
+            if(nameTextField.Text.Equals(NAME_TEXT))
             {
-                nameTextField.Text = "";
+                nameTextField.Text = string.Empty;
             }
         }
     }

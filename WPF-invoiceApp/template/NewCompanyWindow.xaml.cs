@@ -17,6 +17,12 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewCompanyWindow : Window
     {
+        private const string COMPANY_NAME_TEXT = "WSEI";
+        private const string ADDRESS_TEXT = "Karmelicka 24/7";
+        private const string POSTAL_CODE_TEXT = "30-054";
+        private const string CITY_TEXT = "Cracow";
+        private const string COUNTRY_TEXT = "Poland";
+
         public NewCompanyWindow()
         {
             InitializeComponent();
@@ -41,15 +47,15 @@ namespace WPF_invoiceApp.template
         {
             if (string.IsNullOrWhiteSpace(countryTextField.Text))
             {
-                countryTextField.Text = "Poland";
+                countryTextField.Text = COUNTRY_TEXT;
             }
         }
 
         private void CountryTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (countryTextField.Text.Equals("Poland"))
+            if (countryTextField.Text.Equals(COUNTRY_TEXT))
             {
-                countryTextField.Text = "";
+                countryTextField.Text = string.Empty;
             }
         }
 
@@ -57,15 +63,15 @@ namespace WPF_invoiceApp.template
         {
             if (string.IsNullOrWhiteSpace(cityTextField.Text))
             {
-                cityTextField.Text = "Cracow";
+                cityTextField.Text = CITY_TEXT;
             }
         }
 
         private void CityTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (cityTextField.Text.Equals("Cracow"))
+            if (cityTextField.Text.Equals(CITY_TEXT))
             {
-                cityTextField.Text = "";
+                cityTextField.Text = string.Empty;
             }
         }
 
@@ -73,15 +79,15 @@ namespace WPF_invoiceApp.template
         {
             if (string.IsNullOrWhiteSpace(postalcodeTextField.Text))
             {
-                postalcodeTextField.Text = "30-054";
+                postalcodeTextField.Text = POSTAL_CODE_TEXT;
             }
         }
 
         private void PostalcodeTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (postalcodeTextField.Text.Equals("30-054"))
+            if (postalcodeTextField.Text.Equals(POSTAL_CODE_TEXT))
             {
-                postalcodeTextField.Text = "";
+                postalcodeTextField.Text = string.Empty;
             }
         }
 
@@ -89,15 +95,14 @@ namespace WPF_invoiceApp.template
         {
             if (string.IsNullOrWhiteSpace(addressTextField.Text))
             {
-                addressTextField.Text = "Karmelicka 24/7";
+                addressTextField.Text = ADDRESS_TEXT;
             }
         }
 
         private void AddressTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (addressTextField.Text.Equals("Karmelicka 24/7"))
-            {
-                addressTextField.Text = "";
+            if (addressTextField.Text.Equals(ADDRESS_TEXT)) { 
+                addressTextField.Text = string.Empty;
             }
         }
 
@@ -105,15 +110,15 @@ namespace WPF_invoiceApp.template
         {
             if(string.IsNullOrWhiteSpace(companyNameTextField.Text))
             {
-                companyNameTextField.Text = "WSEI";
+                companyNameTextField.Text = COMPANY_NAME_TEXT;
             }
         }
 
         private void CompanyNameTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(companyNameTextField.Text.Equals("WSEI"))
+            if(companyNameTextField.Text.Equals(COMPANY_NAME_TEXT))
             {
-                companyNameTextField.Text = "";
+                companyNameTextField.Text = string.Empty;
             }
         }
 

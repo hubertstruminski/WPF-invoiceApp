@@ -17,6 +17,11 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewCustomerWindow : Window
     {
+        private const string WEBSITE_TEXT = "www.divelog.eu";
+        private const string PHONE_TEXT = "+48 12 21 34 56";
+        private const string EMAIL_TEXT = "hubert.struminski@microsoft.wsei.edu.pl";
+        private const string NAME_TEXT = "Hubert Strumiński";
+
         public NewCustomerWindow()
         {
             InitializeComponent();
@@ -38,15 +43,15 @@ namespace WPF_invoiceApp.template
         {
             if (string.IsNullOrWhiteSpace(websiteTextField.Text))
             {
-                websiteTextField.Text = "www.divelog.eu";
+                websiteTextField.Text = WEBSITE_TEXT;
             }
         }
 
         private void WebsiteTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (websiteTextField.Text.Equals("www.divelog.eu"))
+            if (websiteTextField.Text.Equals(WEBSITE_TEXT))
             {
-                websiteTextField.Text = "";
+                websiteTextField.Text = string.Empty;
             }
         }
 
@@ -54,15 +59,15 @@ namespace WPF_invoiceApp.template
         {
             if (string.IsNullOrWhiteSpace(phoneTextField.Text))
             {
-                phoneTextField.Text = "+48 12 21 34 56";
+                phoneTextField.Text = PHONE_TEXT;
             }
         }
 
         private void PhoneTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (phoneTextField.Text.Equals("+48 12 21 34 56"))
+            if (phoneTextField.Text.Equals(PHONE_TEXT))
             {
-                phoneTextField.Text = "";
+                phoneTextField.Text = string.Empty;
             }
         }
 
@@ -70,15 +75,15 @@ namespace WPF_invoiceApp.template
         {
             if (string.IsNullOrWhiteSpace(emailTextField.Text))
             {
-                emailTextField.Text = "hubert.struminski@microsoft.wsei.edu.pl";
+                emailTextField.Text = EMAIL_TEXT;
             }
         }
 
         private void EmailTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (emailTextField.Text.Equals("hubert.struminski@microsoft.wsei.edu.pl"))
+            if (emailTextField.Text.Equals(EMAIL_TEXT))
             {
-                emailTextField.Text = "";
+                emailTextField.Text = string.Empty;
             }
         }
 
@@ -86,15 +91,15 @@ namespace WPF_invoiceApp.template
         {
             if(string.IsNullOrWhiteSpace(nameTextField.Text))
             {
-                nameTextField.Text = "Hubert Strumiński";
+                nameTextField.Text = NAME_TEXT;
             }
         }
 
         private void NameTextField_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(nameTextField.Text.Equals("Hubert Strumiński"))
+            if(nameTextField.Text.Equals(NAME_TEXT))
             {
-                nameTextField.Text = "";
+                nameTextField.Text = string.Empty;
             }
         }
 
