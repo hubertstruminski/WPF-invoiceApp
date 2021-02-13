@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-invoiceApp", "WPF-invoiceApp\WPF-invoiceApp.csproj", "{6BAF86DD-1535-48B8-B713-68977E4A5640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF-invoiceApp", "WPF-invoiceApp\WPF-invoiceApp.csproj", "{6BAF86DD-1535-48B8-B713-68977E4A5640}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{B01FA213-0D22-4B0A-8452-4C53D35F5D50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{B01FA213-0D22-4B0A-8452-4C53D35F5D50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-NETFramework-invoiceApp", "WPF-NETFramework-invoiceApp\WPF-NETFramework-invoiceApp.csproj", "{C5C81597-BB4A-492F-BD7F-DA88E09E621B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B01FA213-0D22-4B0A-8452-4C53D35F5D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B01FA213-0D22-4B0A-8452-4C53D35F5D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B01FA213-0D22-4B0A-8452-4C53D35F5D50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C81597-BB4A-492F-BD7F-DA88E09E621B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C81597-BB4A-492F-BD7F-DA88E09E621B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C81597-BB4A-492F-BD7F-DA88E09E621B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C81597-BB4A-492F-BD7F-DA88E09E621B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

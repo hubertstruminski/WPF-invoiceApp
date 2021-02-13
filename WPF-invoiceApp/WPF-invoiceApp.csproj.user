@@ -7,6 +7,21 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="template\dashboards\CompanyWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="template\dashboards\CustomerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="template\dashboards\InvoiceWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="template\dashboards\ProductWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="template\dashboards\TaxWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="template\NewCompanyWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +40,21 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="template\dashboards\CompanyWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="template\dashboards\CustomerWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="template\dashboards\InvoiceWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="template\dashboards\ProductWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="template\dashboards\TaxWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="template\NewCompanyWindow.xaml">

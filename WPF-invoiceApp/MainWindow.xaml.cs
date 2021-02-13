@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_invoiceApp.context;
 using WPF_invoiceApp.template;
+
+using Microsoft.EntityFrameworkCore;
+using WPF_invoiceApp.template.dashboards;
 
 namespace WPF_invoiceApp
 {
@@ -21,34 +26,45 @@ namespace WPF_invoiceApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly DatabaseContext _context = new DatabaseContext();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            _context.Database.EnsureCreated();
+            _context.Addresses.Load();
+            _context.Taxes.Load();
         }
 
         private void OnMyCompanyClick(object sender, RoutedEventArgs e)
         {
-            
+            RightViewBox.Children.Clear();
+            RightViewBox.Children.Add(new CompanyWindow());
         }
 
         private void OnCustomersClick(object sender, RoutedEventArgs e)
         {
-
+            RightViewBox.Children.Clear();
+            RightViewBox.Children.Add(new CustomerWindow());
         }
 
         private void OnInvoicesClick(object sender, RoutedEventArgs e)
         {
-
+            RightViewBox.Children.Clear();
+            RightViewBox.Children.Add(new InvoiceWindow());
         }
 
         private void OnProductsClick(object sender, RoutedEventArgs e)
         {
-
+            RightViewBox.Children.Clear();
+            RightViewBox.Children.Add(new ProductWindow());
         }
 
         private void OnTaxClick(object sender, RoutedEventArgs e)
         {
-
+            RightViewBox.Children.Clear();
+            RightViewBox.Children.Add(new TaxWindow());
         }
 
         private void OnNewTaxWindowClick(object sender, RoutedEventArgs e)
