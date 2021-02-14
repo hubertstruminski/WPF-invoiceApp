@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -9,6 +10,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_invoiceApp.context;
+using WPF_invoiceApp.template.dashboards;
 
 namespace WPF_invoiceApp.template
 {
@@ -22,10 +25,41 @@ namespace WPF_invoiceApp.template
         private const string EMAIL_TEXT = "hubert.struminski@microsoft.wsei.edu.pl";
         private const string NAME_TEXT = "Hubert Strumiński";
 
+        private CustomerWindow customerWindow;
+        private DatabaseContext context = new DatabaseContext();
+        private Customer customer;
+        private bool isUpdateFlag = false;
+
         public NewCustomerWindow()
         {
             InitializeComponent();
+            AssignPlaceholderHandlers();
+            context.Database.EnsureCreated(); 
+        }
 
+        public NewCustomerWindow(CustomerWindow customerWindow) : this()
+        {
+            this.customerWindow = customerWindow;
+        }
+
+        public NewCustomerWindow(Customer customer, DatabaseContext context, CustomerWindow customerWindow)
+        {
+            nameTextField.Text = customer.Name;
+            emailTextField.Text = customer.Email;
+            newAddressButton.Content = customer.Address.AddressName + ", " + customer.Address.Country;
+            phoneTextField.Text = customer.PhoneNumber;
+            websiteTextField.Text = customer.Website;
+            nipTextField.Text = customer.Nip;
+            noteTextField.Text = customer.Note;
+
+            this.customer = customer;
+            isUpdateFlag = true;
+            this.context = context;
+            this.customerWindow = customerWindow;
+        }
+
+        private void AssignPlaceholderHandlers()
+        {
             nameTextField.GotFocus += NameTextField_GotFocus;
             nameTextField.LostFocus += NameTextField_LostFocus;
 
@@ -104,6 +138,11 @@ namespace WPF_invoiceApp.template
         }
 
         private void OnNewCustomerSaveButtonAction(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NewAddressButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

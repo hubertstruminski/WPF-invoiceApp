@@ -50,9 +50,9 @@
         <TextBox x:Name="cityTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Foreground="Gray" Text="Cracow" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
         <TextBox x:Name="countryTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Stretch" Foreground="Gray" Text="Poland" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
 
-        <Label x:Name="taxNameErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label x:Name="taxDescriptionErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label x:Name="taxAmountErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label x:Name="companyNameErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label x:Name="addressErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label x:Name="postalcodeErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label x:Name="cityErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label x:Name="countryErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
         

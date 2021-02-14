@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_invoiceApp.context;
+using WPF_invoiceApp.template.dashboards;
 
 namespace WPF_invoiceApp.template
 {
@@ -21,10 +23,23 @@ namespace WPF_invoiceApp.template
         private const string DISCOUNT_TEXT = "6";
         private const string UNIT_TEXT = "TIME";
 
+        private ProductWindow productWindow;
+        private DatabaseContext context = new DatabaseContext();
+
         public NewProductWindow()
         {
             InitializeComponent();
+            AssignPlaceholderHandlers();
+            context.Database.EnsureCreated();
+        }
 
+        public NewProductWindow(ProductWindow productWindow) : this()
+        {
+            this.productWindow = productWindow;
+        }
+
+        private void AssignPlaceholderHandlers()
+        {
             unitTextField.GotFocus += UnitTextField_GotFocus;
             unitTextField.LostFocus += UnitTextField_LostFocus;
 

@@ -28,72 +28,81 @@ namespace WPF_invoiceApp
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 
+        private CompanyWindow companyWindow;
+        private CustomerWindow customerWindow;
+        private InvoiceWindow invoiceWindow;
+        private ProductWindow productWindow;
+        private TaxWindow taxWindow;
+
         public MainWindow()
         {
             InitializeComponent();
-
             _context.Database.EnsureCreated();
-            _context.Addresses.Load();
-            _context.Taxes.Load();
+
+            companyWindow = new CompanyWindow();
+            customerWindow = new CustomerWindow();
+            invoiceWindow = new InvoiceWindow();
+            productWindow = new ProductWindow();
+            taxWindow = new TaxWindow();
         }
 
         private void OnMyCompanyClick(object sender, RoutedEventArgs e)
         {
             RightViewBox.Children.Clear();
-            RightViewBox.Children.Add(new CompanyWindow());
+            RightViewBox.Children.Add(companyWindow);
         }
 
         private void OnCustomersClick(object sender, RoutedEventArgs e)
         {
             RightViewBox.Children.Clear();
-            RightViewBox.Children.Add(new CustomerWindow());
+            RightViewBox.Children.Add(customerWindow);
         }
 
         private void OnInvoicesClick(object sender, RoutedEventArgs e)
         {
             RightViewBox.Children.Clear();
-            RightViewBox.Children.Add(new InvoiceWindow());
+            RightViewBox.Children.Add(invoiceWindow);
         }
 
         private void OnProductsClick(object sender, RoutedEventArgs e)
         {
             RightViewBox.Children.Clear();
-            RightViewBox.Children.Add(new ProductWindow());
+            RightViewBox.Children.Add(productWindow);
         }
 
         private void OnTaxClick(object sender, RoutedEventArgs e)
         {
             RightViewBox.Children.Clear();
-            RightViewBox.Children.Add(new TaxWindow());
+            RightViewBox.Children.Add(taxWindow);
         }
 
         private void OnNewTaxWindowClick(object sender, RoutedEventArgs e)
         {
-            NewTaxWindow newTaxWindow = new NewTaxWindow();
+            NewTaxWindow newTaxWindow = new NewTaxWindow(taxWindow);
             newTaxWindow.ShowDialog();
         }
 
         private void OnNewCompanyClick(object sender, RoutedEventArgs e)
         {
-            NewCompanyWindow newCompanyWindow = new NewCompanyWindow();
+            NewCompanyWindow newCompanyWindow = new NewCompanyWindow(companyWindow);
             newCompanyWindow.ShowDialog();
         }
 
         private void OnNewCustomerWindowClick(object sender, RoutedEventArgs e)
         {
-            NewCustomerWindow newCustomerWindow = new NewCustomerWindow();
+            NewCustomerWindow newCustomerWindow = new NewCustomerWindow(customerWindow);
             newCustomerWindow.ShowDialog();
         }
 
         private void OnNewProductWindowClick(object sender, RoutedEventArgs e)
         {
-            NewProductWindow newProductWindow = new NewProductWindow();
+            NewProductWindow newProductWindow = new NewProductWindow(productWindow);
             newProductWindow.ShowDialog();
         }
         
         private void OnNewInvoiceWindowClick(object sender, RoutedEventArgs e)
         {
-            NewInvoiceWindow newInvoiceWindow = new NewInvoiceWindow();
+            NewInvoiceWindow newInvoiceWindow = new NewInvoiceWindow(invoiceWindow);
             newInvoiceWindow.ShowDialog();
         }
     }
