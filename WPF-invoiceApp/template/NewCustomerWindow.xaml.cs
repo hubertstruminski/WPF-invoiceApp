@@ -38,7 +38,6 @@ namespace WPF_invoiceApp.template
             InitializeComponent();
             AssignPlaceholderHandlers();
             context.Database.EnsureCreated();
-            //context.Addresses.RemoveRange(context.Addresses);
             address = new Address();
         }
 
