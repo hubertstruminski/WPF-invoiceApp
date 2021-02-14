@@ -1,7 +1,9 @@
 ﻿using ClassLibrary;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -28,13 +30,16 @@ namespace WPF_invoiceApp.template
         private CustomerWindow customerWindow;
         private DatabaseContext context = new DatabaseContext();
         private Customer customer;
+        private Address address;
         private bool isUpdateFlag = false;
 
         public NewCustomerWindow()
         {
             InitializeComponent();
             AssignPlaceholderHandlers();
-            context.Database.EnsureCreated(); 
+            context.Database.EnsureCreated();
+            //context.Addresses.RemoveRange(context.Addresses);
+            address = new Address();
         }
 
         public NewCustomerWindow(CustomerWindow customerWindow) : this()
@@ -42,7 +47,7 @@ namespace WPF_invoiceApp.template
             this.customerWindow = customerWindow;
         }
 
-        public NewCustomerWindow(Customer customer, DatabaseContext context, CustomerWindow customerWindow)
+        public NewCustomerWindow(Customer customer, DatabaseContext context, CustomerWindow customerWindow) : this()
         {
             nameTextField.Text = customer.Name;
             emailTextField.Text = customer.Email;
@@ -51,6 +56,8 @@ namespace WPF_invoiceApp.template
             websiteTextField.Text = customer.Website;
             nipTextField.Text = customer.Nip;
             noteTextField.Text = customer.Note;
+
+            address = customer.Address;
 
             this.customer = customer;
             isUpdateFlag = true;
@@ -139,12 +146,152 @@ namespace WPF_invoiceApp.template
 
         private void OnNewCustomerSaveButtonAction(object sender, RoutedEventArgs e)
         {
+            bool isNameEmpty = false;
+            bool isNameError = false;
 
+            bool isEmailEmpty = false;
+            bool isEmailError = false;
+
+            bool isNewAddressEmpty = false;
+
+            bool isNipEmpty = false;
+            bool isNipError = false;
+
+            if (new Regex(NAME_TEXT).IsMatch(nameTextField.Text))
+                isNameEmpty = true;
+            else
+            {
+                if (!new Regex(".{1,255}").IsMatch(nameTextField.Text))
+                    isNameError = true;
+            }
+
+            if (new Regex(EMAIL_TEXT).IsMatch(emailTextField.Text))
+                isEmailEmpty = true;
+            else
+            {
+                if(!new Regex(".{1,255}").IsMatch(emailTextField.Text))
+                    isEmailError = true;
+            }
+
+            if (newAddressButton.Content.Equals(">"))
+                isNewAddressEmpty = true;
+
+            if (nipTextField.Text.Length == 0)
+                isNipEmpty = true;
+            else
+            {
+                if (!new Regex(".{1,255}").IsMatch(emailTextField.Text))
+                    isNipError = true;
+            }
+
+            if (isNameEmpty)
+            {
+                nameErrorLabel.Visibility = Visibility.Visible;
+                nameErrorLabel.Content = "Name field is required.";
+            }
+            else
+            {
+                if (isNameError)
+                {
+                    nameErrorLabel.Visibility = Visibility.Visible;
+                    nameErrorLabel.Content = "Required length is from 1 to 255 characters.";
+                }
+                else
+                    nameErrorLabel.Content = "";
+            }
+
+            if (isEmailEmpty)
+            {
+                emailErrorLabel.Visibility = Visibility.Visible;
+                emailErrorLabel.Content = "Email field is required.";
+            }
+            else
+            {
+                if (isEmailError)
+                {
+                    emailErrorLabel.Visibility = Visibility.Visible;
+                    emailErrorLabel.Content = "Required length is from 1 to 255 characters.";
+                }
+                else
+                    emailErrorLabel.Content = "";
+            }
+
+            if (isNewAddressEmpty)
+            {
+                addressErrorLabel.Visibility = Visibility.Visible;
+                addressErrorLabel.Content = "Address field is required.";
+            }
+            else
+            {
+                addressErrorLabel.Content = "";
+            }
+
+            if (isNipEmpty)
+            {
+                nipErrorLabel.Visibility = Visibility.Visible;
+                nipErrorLabel.Content = "NIP field is required.";
+            }
+            else
+            {
+                if (isNipError)
+                {
+                    nipErrorLabel.Visibility = Visibility.Visible;
+                    nipErrorLabel.Content = "Required length is from 1 to 255 characters.";
+                }
+                else
+                    nipErrorLabel.Content = "";
+            }
+
+            if (isUpdateFlag)
+            {
+                isNameEmpty = false;
+                isEmailEmpty = false;
+                isNewAddressEmpty = false;
+                isNipEmpty = false;
+            }
+
+            if (!isNameEmpty && !isNameError && !isEmailEmpty && 
+                !isEmailError && !isNewAddressEmpty && !isNipEmpty && 
+                !isNipError)
+            {
+                if (!isUpdateFlag)
+                    customer = new Customer();
+
+                customer.Name = nameTextField.Text;
+                customer.Email = emailTextField.Text;
+                customer.Address = address;
+                customer.PhoneNumber = phoneTextField.Text;
+                customer.Website = websiteTextField.Text;
+                customer.Nip = nipTextField.Text;
+                customer.Note = noteTextField.Text;
+
+                if (isUpdateFlag)
+                    context.Customers.Update(customer);
+                else
+                    context.Customers.Add(customer);
+
+                context.SaveChanges();
+                customerWindow.RefreshCustomerGridData();
+
+                this.Close();
+            }
+        }
+
+        public void SetAddress(Address address)
+        {
+            this.address = address;
         }
 
         private void NewAddressButton_Click(object sender, RoutedEventArgs e)
         {
+            NewAddressWindow newAddressWindow;
 
+            if (newAddressButton.Content.Equals(">"))
+                newAddressWindow = new NewAddressWindow(address, newAddressButton, customerWindow, this);
+            else
+                newAddressWindow = new NewAddressWindow(address, customerWindow, newAddressButton, this);
+            
+            newAddressWindow.ShowDialog();
         }
     }
 }

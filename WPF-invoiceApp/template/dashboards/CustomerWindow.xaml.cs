@@ -60,7 +60,7 @@ namespace WPF_invoiceApp.template.dashboards
             Customer selectedItem = (Customer) customerDataGrid.SelectedItem;
         }
 
-        private void CompanyDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        private void CustomerDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
@@ -75,7 +75,7 @@ namespace WPF_invoiceApp.template.dashboards
             _context.SaveChanges();
 
             // MUST BE FOR REFRESH COUNTER COLUMN AFTER PERFORM DELETE ACTION
-            RefreshCompanyGridData();
+            RefreshCustomerGridData();
         }
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
@@ -86,7 +86,7 @@ namespace WPF_invoiceApp.template.dashboards
             newCustomerWindow.ShowDialog();
         }
 
-        public void RefreshCompanyGridData()
+        public void RefreshCustomerGridData()
         {
             _context.Customers.Load();
             customerDataGrid.ItemsSource = null;
