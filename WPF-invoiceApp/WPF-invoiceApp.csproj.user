@@ -22,6 +22,9 @@
     <Compile Update="template\dashboards\TaxWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="template\lists\ChooseTaxWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="template\NewAddressWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -58,6 +61,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="template\dashboards\TaxWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="template\lists\ChooseTaxWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="template\NewAddressWindow.xaml">

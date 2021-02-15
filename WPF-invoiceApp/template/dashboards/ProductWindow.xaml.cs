@@ -102,8 +102,8 @@ namespace WPF_invoiceApp.template.dashboards
         {
             Product selectedItem = (Product) productDataGrid.SelectedItem;
 
-            //NewCustomerWindow newCustomerWindow = new NewCustomerWindow(selectedItem, _context, this);
-            //newCustomerWindow.ShowDialog();
+            NewProductWindow newProductWindow = new NewProductWindow(selectedItem, this);
+            newProductWindow.ShowDialog();
         }
 
         public void RefreshProductGridData()
