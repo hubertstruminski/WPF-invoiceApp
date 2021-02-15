@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,7 @@ namespace WPF_invoiceApp.template
     {
         private InvoiceWindow invoiceWindow;
         private DatabaseContext context = new DatabaseContext();
+        private Invoice selectedItem;
 
         public NewInvoiceWindow()
         {
@@ -31,6 +33,12 @@ namespace WPF_invoiceApp.template
         public NewInvoiceWindow(InvoiceWindow invoiceWindow) : this()
         {
             this.invoiceWindow = invoiceWindow;
+        }
+
+        public NewInvoiceWindow(Invoice selectedItem, InvoiceWindow invoiceWindow)
+        {
+            //this.selectedItem = selectedItem;
+            //this.invoiceWindow = invoiceWindow;
         }
 
         private void OnSaveInvoiceButtonAction(object sender, RoutedEventArgs e)
