@@ -28,23 +28,24 @@ namespace WPF_invoiceApp.template
         private const string COUNTRY_TEXT = "Poland";
 
         private CompanyWindow companyWindow;
-        private DatabaseContext context = new DatabaseContext();
+        private DatabaseContext context;
         private Company company;
         private bool isUpdateFlag = false;
 
-        public NewCompanyWindow()
+        public NewCompanyWindow(DatabaseContext context)
         {
+            this.context = context;
             InitializeComponent();
             AssignPlaceholderHandlers();
             context.Database.EnsureCreated();
         }
 
-        public NewCompanyWindow(CompanyWindow companyWindow) : this()
+        public NewCompanyWindow(CompanyWindow companyWindow, DatabaseContext context) : this(context)
         {
             this.companyWindow = companyWindow;
         }
 
-        public NewCompanyWindow(Company company, DatabaseContext context, CompanyWindow companyWindow) : this()
+        public NewCompanyWindow(Company company, DatabaseContext context, CompanyWindow companyWindow) : this(context)
         {
             companyNameTextField.Text = company.CompanyName;
             addressTextField.Text = company.Address;
@@ -55,7 +56,6 @@ namespace WPF_invoiceApp.template
             this.company = company;
             isUpdateFlag = true;
             //context.Dispose();
-            this.context = context;
             this.companyWindow = companyWindow;
         }
 

@@ -27,25 +27,26 @@ namespace WPF_invoiceApp.template
         private const string UNIT_TEXT = "TIME";
 
         private ProductWindow productWindow;
-        private DatabaseContext context = new DatabaseContext();
+        private DatabaseContext context;
         private Tax tax;
         private bool isUpdateFlag;
         private Product product;
 
 
-        public NewProductWindow()
+        public NewProductWindow(DatabaseContext context)
         {
+            this.context = context;
             InitializeComponent();
             AssignPlaceholderHandlers();
             context.Database.EnsureCreated();
         }
 
-        public NewProductWindow(ProductWindow productWindow) : this()
+        public NewProductWindow(ProductWindow productWindow, DatabaseContext context) : this(context)
         {
             this.productWindow = productWindow;
         }
 
-        public NewProductWindow(Product selectedItem, ProductWindow productWindow) : this()
+        public NewProductWindow(Product selectedItem, ProductWindow productWindow, DatabaseContext context) : this(context)
         {
             nameTextField.Text = selectedItem.Name;
             descriptionTextField.Text = selectedItem.Description;
@@ -310,7 +311,7 @@ namespace WPF_invoiceApp.template
 
         private void AddTaxButton_Click(object sender, RoutedEventArgs e)
         {
-            ChooseTaxWindow chooseTaxWindow = new ChooseTaxWindow(this);
+            ChooseTaxWindow chooseTaxWindow = new ChooseTaxWindow(this, context);
             chooseTaxWindow.Owner = Application.Current.MainWindow;
             chooseTaxWindow.ShowDialog();
         }

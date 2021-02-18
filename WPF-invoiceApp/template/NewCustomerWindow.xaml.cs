@@ -28,25 +28,26 @@ namespace WPF_invoiceApp.template
         private const string NAME_TEXT = "Hubert Strumiński";
 
         private CustomerWindow customerWindow;
-        private DatabaseContext context = new DatabaseContext();
+        private DatabaseContext context;
         private Customer customer;
         private Address address;
         private bool isUpdateFlag = false;
 
-        public NewCustomerWindow()
+        public NewCustomerWindow(DatabaseContext context)
         {
+            this.context = context;
             InitializeComponent();
             AssignPlaceholderHandlers();
             context.Database.EnsureCreated();
             address = new Address();
         }
 
-        public NewCustomerWindow(CustomerWindow customerWindow) : this()
+        public NewCustomerWindow(CustomerWindow customerWindow, DatabaseContext context) : this(context)
         {
             this.customerWindow = customerWindow;
         }
 
-        public NewCustomerWindow(Customer customer, DatabaseContext context, CustomerWindow customerWindow) : this()
+        public NewCustomerWindow(Customer customer, DatabaseContext context, CustomerWindow customerWindow) : this(context)
         {
             nameTextField.Text = customer.Name;
             emailTextField.Text = customer.Email;
@@ -60,7 +61,6 @@ namespace WPF_invoiceApp.template
 
             this.customer = customer;
             isUpdateFlag = true;
-            this.context = context;
             this.customerWindow = customerWindow;
         }
 

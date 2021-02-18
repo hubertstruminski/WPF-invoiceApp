@@ -26,23 +26,24 @@ namespace WPF_invoiceApp.template
         private const string NAME_TEXT = "VAT";
 
         private TaxWindow taxWindow;
-        private DatabaseContext context = new DatabaseContext();
+        private DatabaseContext context;
         private Tax tax;
         private bool isUpdateFlag = false;
 
-        public NewTaxWindow()
+        public NewTaxWindow(DatabaseContext context)
         {
+            this.context = context;
             InitializeComponent();
             AssignPlaceholderHandlers();
             context.Database.EnsureCreated();
         }
 
-        public NewTaxWindow(TaxWindow taxWindow) : this()
+        public NewTaxWindow(TaxWindow taxWindow, DatabaseContext context) : this(context)
         {
             this.taxWindow = taxWindow;
         }
 
-        public NewTaxWindow(Tax tax, DatabaseContext context, TaxWindow taxWindow) : this()
+        public NewTaxWindow(Tax tax, DatabaseContext context, TaxWindow taxWindow) : this(context)
         {
             nameTextField.Text = tax.Name;
             descriptionTextField.Text = tax.Description;
@@ -50,7 +51,6 @@ namespace WPF_invoiceApp.template
             this.tax = tax;
             isUpdateFlag = true;
             //context.Dispose();
-            this.context = context;
             this.taxWindow = taxWindow;
         }
 

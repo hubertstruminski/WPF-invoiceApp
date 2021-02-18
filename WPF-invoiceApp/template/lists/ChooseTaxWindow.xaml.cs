@@ -20,18 +20,19 @@ namespace WPF_invoiceApp.template.lists
     /// </summary>
     public partial class ChooseTaxWindow : Window
     {
-        private DatabaseContext _context = new DatabaseContext();
+        private DatabaseContext _context;
         private CollectionViewSource taxViewSource;
 
         private NewProductWindow newProductWindow;
 
-        public ChooseTaxWindow()
+        public ChooseTaxWindow(DatabaseContext context)
         {
+            _context = context;
             InitializeComponent();
             taxViewSource = (CollectionViewSource)FindResource(nameof(taxViewSource));
         }
 
-        public ChooseTaxWindow(NewProductWindow newProductWindow) : this()
+        public ChooseTaxWindow(NewProductWindow newProductWindow, DatabaseContext context) : this(context)
         {
             this.newProductWindow = newProductWindow;
         }

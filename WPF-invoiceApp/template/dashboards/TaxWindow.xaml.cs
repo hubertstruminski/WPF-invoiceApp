@@ -22,11 +22,12 @@ namespace WPF_invoiceApp.template.dashboards
     /// </summary>
     public partial class TaxWindow : UserControl
     {
-        private readonly DatabaseContext _context = new DatabaseContext();
+        private readonly DatabaseContext _context;
         private CollectionViewSource taxViewSource;
 
-        public TaxWindow()
+        public TaxWindow(DatabaseContext context)
         {
+            _context = context;
             InitializeComponent();
             taxViewSource = (CollectionViewSource)FindResource(nameof(taxViewSource));
         }

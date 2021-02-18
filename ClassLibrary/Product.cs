@@ -13,7 +13,8 @@ namespace ClassLibrary
         public double Amount { get; set; }
         public string Unit { get; set; }
         public int Discount { get; set; }
+        public long TaxId { get; set; }
         public Tax Tax { get; set; }
-        public List<Invoice> Invoices { get; set; }
+        public ICollection<InvoiceProduct> InvoiceProducts { get; set; }
     }
 }

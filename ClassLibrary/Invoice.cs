@@ -11,8 +11,9 @@ namespace ClassLibrary
         public DateTime Date { get; set; }
         public DateTime Deadline { get; set; }
         public Status Status { get; set; }
+        public long CustomerId { get; set; }
         public Customer Customer { get; set; }
-        public List<Product> Products { get; set; }
+        public ICollection<InvoiceProduct> InvoiceProducts { get; set; }
         public string Comment { get; set; }
     }
 }

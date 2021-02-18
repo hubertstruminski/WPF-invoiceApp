@@ -26,7 +26,7 @@ namespace WPF_invoiceApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly DatabaseContext _context = new DatabaseContext();
+        private readonly DatabaseContext _context;
 
         private CompanyWindow companyWindow;
         private CustomerWindow customerWindow;
@@ -34,22 +34,20 @@ namespace WPF_invoiceApp
         private ProductWindow productWindow;
         private TaxWindow taxWindow;
 
-        public MainWindow()
+        public MainWindow(DatabaseContext context)
         {
+            _context = context;
             InitializeComponent();
+
             _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
 
-            if(!InvoiceAppDBInitializer.IsPerformed)
-            {
-                InvoiceAppDBInitializer.Initialize(_context);
-            }
 
-            companyWindow = new CompanyWindow();
-            customerWindow = new CustomerWindow();
-            invoiceWindow = new InvoiceWindow();
-            productWindow = new ProductWindow();
-            taxWindow = new TaxWindow();
+            companyWindow = new CompanyWindow(_context);
+            customerWindow = new CustomerWindow(_context);
+            invoiceWindow = new InvoiceWindow(_context);
+            productWindow = new ProductWindow(_context);
+            taxWindow = new TaxWindow(_context);
         }
 
         private void OnMyCompanyClick(object sender, RoutedEventArgs e)
@@ -84,31 +82,31 @@ namespace WPF_invoiceApp
 
         private void OnNewTaxWindowClick(object sender, RoutedEventArgs e)
         {
-            NewTaxWindow newTaxWindow = new NewTaxWindow(taxWindow);
+            NewTaxWindow newTaxWindow = new NewTaxWindow(taxWindow, _context);
             newTaxWindow.ShowDialog();
         }
 
         private void OnNewCompanyClick(object sender, RoutedEventArgs e)
         {
-            NewCompanyWindow newCompanyWindow = new NewCompanyWindow(companyWindow);
+            NewCompanyWindow newCompanyWindow = new NewCompanyWindow(companyWindow, _context);
             newCompanyWindow.ShowDialog();
         }
 
         private void OnNewCustomerWindowClick(object sender, RoutedEventArgs e)
         {
-            NewCustomerWindow newCustomerWindow = new NewCustomerWindow(customerWindow);
+            NewCustomerWindow newCustomerWindow = new NewCustomerWindow(customerWindow, _context);
             newCustomerWindow.ShowDialog();
         }
 
         private void OnNewProductWindowClick(object sender, RoutedEventArgs e)
         {
-            NewProductWindow newProductWindow = new NewProductWindow(productWindow);
+            NewProductWindow newProductWindow = new NewProductWindow(productWindow, _context);
             newProductWindow.ShowDialog();
         }
         
         private void OnNewInvoiceWindowClick(object sender, RoutedEventArgs e)
         {
-            NewInvoiceWindow newInvoiceWindow = new NewInvoiceWindow(invoiceWindow);
+            NewInvoiceWindow newInvoiceWindow = new NewInvoiceWindow(invoiceWindow, _context);
             newInvoiceWindow.ShowDialog();
         }
     }

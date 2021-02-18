@@ -22,11 +22,12 @@ namespace WPF_invoiceApp.template.dashboards
     /// </summary>
     public partial class InvoiceWindow : UserControl
     {
-        private readonly DatabaseContext _context = new DatabaseContext();
+        private readonly DatabaseContext _context;
         private CollectionViewSource invoiceViewSource;
 
-        public InvoiceWindow()
+        public InvoiceWindow(DatabaseContext context)
         {
+            _context = context;
             InitializeComponent();
             invoiceViewSource = (CollectionViewSource) FindResource(nameof(invoiceViewSource));
         }
@@ -119,20 +120,20 @@ namespace WPF_invoiceApp.template.dashboards
             _context.Invoices.Load();
             
             Invoice selectedItem = (Invoice) invoiceDataGrid.SelectedItem;
-            var queryables = _context.Products
-                .Select(x => new { Product = x, Invoices = x.Invoices
-                    .Where(x => x.Id == selectedItem.Id) 
-                })
-                .Where(x => x.Invoices.Count() > 0)
-                .Select(x => x.Product)
-                .AsEnumerable()
-                .ToList();
-            selectedItem.Products = queryables;
+            //var queryables = _context.Products
+            //    .Select(x => new { Product = x, Invoices = x.Invoices
+            //        .Where(x => x.Id == selectedItem.Id) 
+            //    })
+            //    .Where(x => x.Invoices.Count() > 0)
+            //    .Select(x => x.Product)
+            //    .AsEnumerable()
+            //    .ToList();
+            //selectedItem.Products = queryables;
 
             Customer customer = _context.Customers.Include("Address").Where(x => x.Id == selectedItem.Customer.Id).Single();
             selectedItem.Customer = customer;
 
-            NewInvoiceWindow newInvoiceWindow = new NewInvoiceWindow(selectedItem, this);
+            NewInvoiceWindow newInvoiceWindow = new NewInvoiceWindow(selectedItem, this, _context);
             newInvoiceWindow.ShowDialog();
         }
 

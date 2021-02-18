@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_invoiceApp.template.dashboards"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Red" Loaded="Window_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#C7C7C7" Loaded="Window_Loaded">
     <Control.Resources>
         <CollectionViewSource x:Key="customerViewSource"/>
         <Style x:Key="DataGridButton" TargetType="Button">
@@ -129,8 +129,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label FontSize="27">Customer Window</Label>
-        </StackPanel>
+        <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label FontSize="16">View not available.</Label>
+        </Grid>
     </Grid>
 </UserControl>

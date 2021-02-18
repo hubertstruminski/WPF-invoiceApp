@@ -21,11 +21,12 @@ namespace WPF_invoiceApp.template.dashboards
     /// </summary>
     public partial class ProductWindow : UserControl
     {
-        private readonly DatabaseContext _context = new DatabaseContext();
+        private readonly DatabaseContext _context;
         private CollectionViewSource productViewSource;
 
-        public ProductWindow()
+        public ProductWindow(DatabaseContext context)
         {
+            _context = context;
             InitializeComponent();
             productViewSource = (CollectionViewSource) FindResource(nameof(productViewSource));
         }
@@ -66,7 +67,7 @@ namespace WPF_invoiceApp.template.dashboards
             _context.Taxes.Load();
             Product selectedItem = (Product) productDataGrid.SelectedItem;
 
-            NewProductWindow newProductWindow = new NewProductWindow(selectedItem, this);
+            NewProductWindow newProductWindow = new NewProductWindow(selectedItem, this, _context);
             newProductWindow.ShowDialog();
         }
 

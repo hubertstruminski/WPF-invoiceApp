@@ -21,11 +21,12 @@ namespace WPF_invoiceApp.template.dashboards
     /// </summary>
     public partial class CustomerWindow : UserControl
     {
-        private readonly DatabaseContext _context = new DatabaseContext();
+        private readonly DatabaseContext _context;
         private CollectionViewSource customerViewSource;
 
-        public CustomerWindow()
+        public CustomerWindow(DatabaseContext context)
         {
+            _context = context;
             InitializeComponent();
             customerViewSource = (CollectionViewSource)FindResource(nameof(customerViewSource));
         }

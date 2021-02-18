@@ -27,14 +27,15 @@ namespace WPF_invoiceApp.template
         private const string BUTTON_TEXT = ">";
 
         private InvoiceWindow invoiceWindow;
-        private DatabaseContext context = new DatabaseContext();
+        private DatabaseContext context;
         private Invoice invoice;
         private Customer customer;
         private List<Product> products;
         private bool isUpdateFlag = false;
 
-        public NewInvoiceWindow()
+        public NewInvoiceWindow(DatabaseContext context)
         {
+            this.context = context;
             InitializeComponent();
             context.Database.EnsureCreated();
             customer = new Customer();
@@ -42,23 +43,23 @@ namespace WPF_invoiceApp.template
             products = new List<Product>();
         }
 
-        public NewInvoiceWindow(InvoiceWindow invoiceWindow) : this()
+        public NewInvoiceWindow(InvoiceWindow invoiceWindow, DatabaseContext context) : this(context)
         {
             this.invoiceWindow = invoiceWindow;
         }
 
-        public NewInvoiceWindow(Invoice selectedItem, InvoiceWindow invoiceWindow) : this()
+        public NewInvoiceWindow(Invoice selectedItem, InvoiceWindow invoiceWindow, DatabaseContext context) : this(context)
         {
             numberTextField.Text = selectedItem.Number;
             datePicker.SelectedDate = selectedItem.Date;
             deadlinePicker.SelectedDate = selectedItem.Deadline;
             addCustomerButton.Content = selectedItem.Customer.Name;
-            listProductsButton.Content = selectedItem.Products.Count + " Item(s)";
+            listProductsButton.Content = selectedItem.InvoiceProducts.Count + " Item(s)";
             commentTextField.Text = selectedItem.Comment;
 
             customer = selectedItem.Customer;
-            products = selectedItem.Products;
-            
+            //products = selectedItem.Products;
+
             invoice = selectedItem;
             isUpdateFlag = true;
             this.invoiceWindow = invoiceWindow;
@@ -66,7 +67,7 @@ namespace WPF_invoiceApp.template
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
-            ChooseProductWindow chooseProductWindow = new ChooseProductWindow(this);
+            ChooseProductWindow chooseProductWindow = new ChooseProductWindow(this, context);
             chooseProductWindow.Owner = Application.Current.MainWindow;
             chooseProductWindow.ShowDialog();
         }
@@ -124,24 +125,46 @@ namespace WPF_invoiceApp.template
 
             if(!isNumberEmpty && !isCustomerEmpty && !isProductEmpty)
             {
-                context.Addresses.Load();
+                //context.Addresses.Load();
+
+                // var foundCustomer = await context.Customers.AsNoTracking().FirstAsync(x => x.Id == customer.Id);
+                //var list = new List<Product>();
+                //foreach(Product p1 in products)
+                //{
+                //    Product product = await context.Products.AsNoTracking().FirstAsync(x => x.Id == p1.Id);
+                //    context.Entry<Product>(product).State = EntityState.Detached;
+                //    list.Add(product);
+                //}
+                
+
                 invoice.Number = numberTextField.Text;
                 invoice.Date = datePicker.SelectedDate == null ? DateTime.Now : datePicker.SelectedDate.Value;
                 invoice.Deadline = deadlinePicker.SelectedDate == null ? DateTime.Now : deadlinePicker.SelectedDate.Value;
                 invoice.Customer = customer;
                 invoice.Comment = commentTextField.Text;
                 invoice.Status = Status.NOT_SENT;
-                invoice.Products = products;
 
-                foreach (Product x in products)
+                invoice.InvoiceProducts = new List<InvoiceProduct>();
+
+
+                foreach(Product product in products)
                 {
-                    context.Taxes.Attach(x.Tax);
-                    context.Products.Attach(x);
-                }
-                Address address = context.Addresses.Include("Customer").Where(x => x.Id == customer.Address.Id).Single();
-                context.Entry<Address>(address).State = EntityState.Detached;
+                    InvoiceProduct ip = new InvoiceProduct();
+                    ip.Invoice = invoice;
+                    ip.Product = product;
 
-                context.Customers.Attach(customer);
+                    invoice.InvoiceProducts.Add(ip);
+                }
+
+                //foreach (Product product in products)
+                //{
+                //    context.Taxes.Attach(product.Tax);
+                //    context.Products.Attach(product);
+                //}
+                //Address address = context.Addresses.Include("Customer").Where(x => x.Id == customer.Address.Id).Single();
+                //context.Entry<Address>(address).State = EntityState.Detached;
+
+                //context.Customers.Attach(customer);
 
                 if (isUpdateFlag)
                     context.Invoices.Update(invoice);
@@ -170,7 +193,7 @@ namespace WPF_invoiceApp.template
 
         private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            ChooseCustomerWindow chooseCustomerWindow = new ChooseCustomerWindow(this);
+            ChooseCustomerWindow chooseCustomerWindow = new ChooseCustomerWindow(this, context);
             chooseCustomerWindow.Owner = Application.Current.MainWindow;
             chooseCustomerWindow.ShowDialog();
         }
