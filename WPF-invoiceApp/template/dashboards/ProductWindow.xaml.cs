@@ -34,45 +34,9 @@ namespace WPF_invoiceApp.template.dashboards
         {
             _context.Database.EnsureCreated();
 
-            DbSet<Product> products = _context.Products;
-            foreach (Product x in products)
-            {
-                _context.Products.Remove(x);
-            }
-
-            _context.SaveChanges();
             _context.Products.Load();
 
             productViewSource.Source = _context.Products.Local.ToObservableCollection();
-
-            DbSet<Tax> taxes = _context.Taxes;
-            Tax foundTax = null;
-            foreach(Tax x in taxes)
-            {
-                foundTax = x;
-            }
-
-            _context.Products.Add(new Product()
-            {
-                Name = "Computer",
-                Description = "desktop",
-                Price = 1200,
-                Amount = 1,
-                Discount = 0,
-                Unit = "UNIT",
-                Tax = foundTax
-            });
-            _context.Products.Add(new Product() {  
-                Name = "Smartphone",
-                Description = "mobile",
-                Price = 650,
-                Amount = 3,
-                Discount = 5,
-                Unit = "UNIT",
-                Tax = foundTax
-            });
-
-            _context.SaveChanges();
         }
 
         private void OnSelectItem(object sender, SelectionChangedEventArgs e)
@@ -94,12 +58,12 @@ namespace WPF_invoiceApp.template.dashboards
             _context.Products.Remove(selectedItem);
             _context.SaveChanges();
 
-            // MUST BE FOR REFRESH COUNTER COLUMN AFTER PERFORM DELETE ACTION
             RefreshProductGridData();
         }
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
+            _context.Taxes.Load();
             Product selectedItem = (Product) productDataGrid.SelectedItem;
 
             NewProductWindow newProductWindow = new NewProductWindow(selectedItem, this);

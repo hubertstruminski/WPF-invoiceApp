@@ -69,6 +69,7 @@ namespace WPF_invoiceApp.template.dashboards
 
             _context.Taxes.Load();
 
+            _context.Entry(selectedItem).State = EntityState.Detached;
             _context.Taxes.Remove(selectedItem);
             _context.SaveChanges();
 
@@ -87,8 +88,9 @@ namespace WPF_invoiceApp.template.dashboards
 
         public void RefreshTaxGridData()
         {
-            _context.Taxes.Load();
+            //_context.Taxes.Load();
             taxDataGrid.ItemsSource = null;
+            taxDataGrid.Items.Clear();
             DbSet<Tax> taxes = _context.Taxes;
             foreach(Tax x in taxes)
             {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_invoiceApp"
         mc:Ignorable="d"
-        Title="Invoice Application - Dashboard" Height="448" Width="804" MaxHeight="800" MaxWidth="1400"
+        Title="Invoice Application - Dashboard" Height="850" Width="1380" MinHeight="400" MinWidth="700"
         Style="{DynamicResource CustomWindowStyle}">
     <Window.Resources>
         <ResourceDictionary>
@@ -68,31 +68,31 @@
 
                 <Button Padding="5" Background="#E5E5E5" BorderBrush="#BBBBBB" Grid.Row="0" Click="OnMyCompanyClick">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Stretch="Fill" Margin="20" Source="/company.png" />
+                        <Image Height="40" Width="40" Margin="20" Source="/company.png" />
                         <TextBlock FontWeight="Bold" FontStretch="UltraExpanded" VerticalAlignment="Center">My company</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Background="#E5E5E5" BorderBrush="#BBBBBB" Grid.Row="1" Click="OnCustomersClick">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Margin="20" Stretch="Fill" Source="/iconfinder_engagement-customer-user-interaction-branding_3209311.png" />
+                        <Image Margin="20" Height="40" Width="40" Source="/iconfinder_engagement-customer-user-interaction-branding_3209311.png" />
                         <TextBlock FontWeight="Bold" FontStretch="UltraExpanded" VerticalAlignment="Center">Customers</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Background="#E5E5E5" BorderBrush="#BBBBBB" Grid.Row="2" Click="OnInvoicesClick">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Margin="20" Stretch="Fill" Source="/iconfinder_receipt_4172166.png" />
+                        <Image Margin="20" Height="40" Width="40" Source="/iconfinder_receipt_4172166.png" />
                         <TextBlock FontWeight="Bold" FontStretch="UltraExpanded" VerticalAlignment="Center">Invoices</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Background="#E5E5E5" BorderBrush="#BBBBBB" Grid.Row="3" Click="OnProductsClick">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Margin="20" Stretch="Fill" Source="/iconfinder_Cart_2_372896.png" />
+                        <Image Margin="20" Height="40" Width="40" Source="/iconfinder_Cart_2_372896.png" />
                         <TextBlock FontWeight="Bold" FontStretch="UltraExpanded" VerticalAlignment="Center">Products</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Background="#E5E5E5" BorderBrush="#BBBBBB" Grid.Row="4" Click="OnTaxClick">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Margin="20" Stretch="Fill" Source="/iconfinder_N_F009_07_TaxArtboard_1_copy_9_6570640.png" />
+                        <Image Margin="20" Height="40" Width="40" Source="/iconfinder_N_F009_07_TaxArtboard_1_copy_9_6570640.png" />
                         <TextBlock FontWeight="Bold" FontStretch="UltraExpanded" VerticalAlignment="Center">Tax</TextBlock>
                     </StackPanel>
                 </Button>

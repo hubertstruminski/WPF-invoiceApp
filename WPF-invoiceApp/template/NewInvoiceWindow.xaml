@@ -50,22 +50,22 @@
         <TextBox x:Name="numberTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
         <Calendar x:Name="datePicker" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center" DisplayDate="02/02/2021" />
         <Calendar x:Name="deadlinePicker" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" DisplayDate="02/10/2021"/>
-        <Button x:Name="addCustomerButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Foreground="Gray" Content=">"  VerticalAlignment="Center" HorizontalContentAlignment="Right" />
+        <Button x:Name="addCustomerButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="6" Content="" HorizontalAlignment="Stretch" Foreground="Gray" VerticalAlignment="Center" HorizontalContentAlignment="Right" Click="AddCustomerButton_Click" />
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="8">
-            <Button x:Name="listProductsButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" HorizontalAlignment="Stretch" Foreground="Gray" Content=">"  VerticalAlignment="Center" HorizontalContentAlignment="Right" />
+            <Button x:Name="listProductsButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" HorizontalAlignment="Stretch" Content="" Foreground="Gray" VerticalAlignment="Center" HorizontalContentAlignment="Right" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button x:Name="addProductButton" Grid.Column="0" Grid.Row="0" Margin="5" Content="Add product">
+                <Button x:Name="addProductButton" Grid.Column="0" Grid.Row="0" Margin="5" Content="Add product" Click="AddProductButton_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5" />
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button x:Name="onAddProductClearButton" Grid.Column="1" Grid.Row="0" Margin="5" Content="Clear list">
+                <Button x:Name="onAddProductClearButton" Grid.Column="1" Grid.Row="0" Margin="5" Content="Clear list" Click="OnAddProductClearButton_Click">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5" />
@@ -77,7 +77,6 @@
         <TextBox x:Name="commentTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="10" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
 
         <Label x:Name="numberErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label x:Name="dateErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label x:Name="customerErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label x:Name="productErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="9" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
 

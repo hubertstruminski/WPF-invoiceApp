@@ -37,7 +37,13 @@ namespace WPF_invoiceApp
         public MainWindow()
         {
             InitializeComponent();
+            _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
+
+            if(!InvoiceAppDBInitializer.IsPerformed)
+            {
+                InvoiceAppDBInitializer.Initialize(_context);
+            }
 
             companyWindow = new CompanyWindow();
             customerWindow = new CustomerWindow();

@@ -34,22 +34,22 @@ namespace WPF_invoiceApp.template.dashboards
         {
             _context.Database.EnsureCreated();
 
-            DbSet<Company> companies = _context.Companies;
-            foreach (Company x in companies)
-            {
-                _context.Companies.Remove(x);
-            }
+            //DbSet<Company> companies = _context.Companies;
+            //foreach (Company x in companies)
+            //{
+            //    _context.Companies.Remove(x);
+            //}
 
-            _context.SaveChanges();
+            //_context.SaveChanges();
 
             _context.Companies.Load();
 
             companyViewSource.Source = _context.Companies.Local.ToObservableCollection();
 
-            _context.Companies.Add(new Company() { CompanyName = "WSEI", Address = "św. Filipa 17", City = "Cracow", Country = "Poland", PostalCode = "30-702" });
-            _context.Companies.Add(new Company() { CompanyName = "Silver", Address = "Karmelicka 14/17", City = "Cracow", Country = "Poland", PostalCode = "30-054" });
+            //_context.Companies.Add(new Company() { CompanyName = "WSEI", Address = "św. Filipa 17", City = "Cracow", Country = "Poland", PostalCode = "30-702" });
+            //_context.Companies.Add(new Company() { CompanyName = "Silver", Address = "Karmelicka 14/17", City = "Cracow", Country = "Poland", PostalCode = "30-054" });
 
-            _context.SaveChanges();
+            //_context.SaveChanges();
         }
 
         private void OnSelectItem(object sender, SelectionChangedEventArgs e)

@@ -14,6 +14,6 @@ namespace ClassLibrary
         public string Unit { get; set; }
         public int Discount { get; set; }
         public Tax Tax { get; set; }
-        public Invoice Invoice { get; set; }
+        public List<Invoice> Invoices { get; set; }
     }
 }
