@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="WPF_invoiceApp.template.details.InvoiceDetailsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_invoiceApp.template.details"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#C7C7C7">
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Invoice number" FontSize="19" />
+                <TextBlock x:Name="numberInvoiceValueLabel" Grid.Row="0" Grid.Column="1" FontSize="19" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Label" />
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Date" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="dateValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="date Value" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Deadline" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="deadlineValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="deadline Value" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Customer" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="customerValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="customer Value" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Comment" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="commentValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="comment Value" TextWrapping="Wrap" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="5" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Products" FontSize="19" Padding="50,0,0,0" />
+                <ScrollViewer Grid.Row="1" Margin="50,0,50,0" HorizontalScrollBarVisibility="Auto" MinHeight="150">
+                    <StackPanel x:Name="scrollViewer"  Orientation="Vertical">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

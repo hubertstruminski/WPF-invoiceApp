@@ -22,6 +22,18 @@
     <Compile Update="template\dashboards\TaxWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="template\details\CompanyDetailsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="template\details\CustomerDetailsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="template\details\InvoiceDetailsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="template\details\ProductDetailsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="template\lists\ChooseCustomerWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -67,6 +79,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="template\dashboards\TaxWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="template\details\CompanyDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="template\details\CustomerDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="template\details\InvoiceDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="template\details\ProductDetailsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="template\lists\ChooseCustomerWindow.xaml">

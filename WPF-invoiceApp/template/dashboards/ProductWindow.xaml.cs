@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.template.details;
 
 namespace WPF_invoiceApp.template.dashboards
 {
@@ -82,6 +84,25 @@ namespace WPF_invoiceApp.template.dashboards
                 productDataGrid.Items.Add(x);
             }
             productDataGrid.Items.Refresh();
+        }
+
+        private void Button_Show_Click(object sender, RoutedEventArgs e)
+        {
+            Product selectedItem = (Product) productDataGrid.SelectedItem;
+
+            List<InvoiceProduct> invoiceProducts = _context.InvoiceProducts.Include("Product").Include("Invoice").Where(x => x.ProductId == selectedItem.Id).ToList();
+            
+            Product foundProduct = _context.Products.Include("Tax").Include("InvoiceProducts").Where(x => x.Id == selectedItem.Id).Single();
+            foundProduct.InvoiceProducts = invoiceProducts;
+
+            ProductDetailsWindow productDetailsWindow = new ProductDetailsWindow(foundProduct, _context);
+
+            RightViewBox.Children.Clear();
+
+            RightViewBox.VerticalAlignment = VerticalAlignment.Stretch;
+            RightViewBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            RightViewBox.Children.Add(productDetailsWindow);
         }
     }
 }

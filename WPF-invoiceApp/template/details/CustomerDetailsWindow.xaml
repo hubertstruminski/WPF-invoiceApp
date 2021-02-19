@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="WPF_invoiceApp.template.details.CustomerDetailsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_invoiceApp.template.details"
+             mc:Ignorable="d" 
+             >
+    <ScrollViewer>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="nameLabel" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0" Text="Label" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="E-mail" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="emailValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="E-mail Value" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Address" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="addressValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="address Value" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Phone number" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="phoneNumberValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="PhoneNumber Value" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Country" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="countryValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="country Value" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="NIP" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="nipValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="NIP Value" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Comment" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="commentValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="comment Value" TextWrapping="Wrap" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="5" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Website" FontSize="19" Padding="50,0,0,0" />
+                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                    <TextBlock x:Name="websiteValueLabel" FontSize="16" VerticalAlignment="Bottom" Text="comment Value" />
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Invoices" FontSize="19" Padding="50,0,0,0" />
+                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Margin="50,0,50,0" HorizontalScrollBarVisibility="Auto" MinHeight="150">
+                    <StackPanel x:Name="scrollViewer"  Orientation="Vertical">
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

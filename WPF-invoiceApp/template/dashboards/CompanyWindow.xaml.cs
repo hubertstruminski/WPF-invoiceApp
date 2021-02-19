@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.template.details;
 
 namespace WPF_invoiceApp.template.dashboards
 {
@@ -35,22 +36,9 @@ namespace WPF_invoiceApp.template.dashboards
         {
             _context.Database.EnsureCreated();
 
-            //DbSet<Company> companies = _context.Companies;
-            //foreach (Company x in companies)
-            //{
-            //    _context.Companies.Remove(x);
-            //}
-
-            //_context.SaveChanges();
-
             _context.Companies.Load();
 
             companyViewSource.Source = _context.Companies.Local.ToObservableCollection();
-
-            //_context.Companies.Add(new Company() { CompanyName = "WSEI", Address = "św. Filipa 17", City = "Cracow", Country = "Poland", PostalCode = "30-702" });
-            //_context.Companies.Add(new Company() { CompanyName = "Silver", Address = "Karmelicka 14/17", City = "Cracow", Country = "Poland", PostalCode = "30-054" });
-
-            //_context.SaveChanges();
         }
 
         private void OnSelectItem(object sender, SelectionChangedEventArgs e)
@@ -74,7 +62,6 @@ namespace WPF_invoiceApp.template.dashboards
 
             // MUST BE FOR REFRESH COUNTER COLUMN AFTER PERFORM DELETE ACTION
             RefreshCompanyGridData();
-
         }
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
@@ -96,6 +83,20 @@ namespace WPF_invoiceApp.template.dashboards
                 companyDataGrid.Items.Add(x);
             }
             companyDataGrid.Items.Refresh();
+        }
+
+        private void Button_Show_Click(object sender, RoutedEventArgs e)
+        {
+            Company selectedItem = (Company)companyDataGrid.SelectedItem;
+
+            CompanyDetailsWindow companyDetailsWindow = new CompanyDetailsWindow(selectedItem, _context);
+
+            RightViewBox.Children.Clear();
+
+            RightViewBox.VerticalAlignment = VerticalAlignment.Stretch;
+            RightViewBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            RightViewBox.Children.Add(companyDetailsWindow);
         }
     }
 }

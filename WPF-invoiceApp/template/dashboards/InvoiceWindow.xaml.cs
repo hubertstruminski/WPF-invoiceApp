@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.template.details;
 
 namespace WPF_invoiceApp.template.dashboards
 {
@@ -36,58 +37,12 @@ namespace WPF_invoiceApp.template.dashboards
         {
             _context.Database.EnsureCreated();
 
-            //DbSet<Invoice> invoices = _context.Invoices;
-            //foreach (Invoice x in invoices)
-            //{
-            //    _context.Invoices.Remove(x);
-            //}
-
-            //_context.SaveChanges();
             _context.Customers.Load();
             _context.Taxes.Load();
             _context.Products.Load();
             _context.Invoices.Load();
 
             invoiceViewSource.Source = _context.Invoices.Local.ToObservableCollection();
-
-            //DbSet<Customer> customers = _context.Customers;
-            //Customer customer = null;
-            //foreach (Customer x in customers)
-            //{
-            //    customer = x;
-            //    break;
-            //}
-
-            //DbSet<Product> products = _context.Products;
-            //Product product = null;
-            //foreach (Product x in products)
-            //{
-            //    product = x;
-            //    break;
-            //}
-
-            //_context.Invoices.Add(new Invoice()
-            //{
-            //    Number = "876356",
-            //    Date = DateTime.Now,
-            //    Deadline = DateTime.Now,
-            //    Status = Status.NOT_SENT,
-            //    Customer = customer,
-            //    Products = new List<Product>() { product },
-            //    Comment = "This is a comment."
-            //});
-            //_context.Invoices.Add(new Invoice()
-            //{
-            //    Number = "123356",
-            //    Date = DateTime.Now,
-            //    Deadline = DateTime.Now,
-            //    Status = Status.SENT,
-            //    Customer = customer,
-            //    Products = new List<Product>() { product },
-            //    Comment = "This is a comment 222."
-            //});
-
-            //_context.SaveChanges();
         }
 
         private void OnSelectItem(object sender, SelectionChangedEventArgs e)
@@ -120,15 +75,6 @@ namespace WPF_invoiceApp.template.dashboards
             _context.Invoices.Load();
             
             Invoice selectedItem = (Invoice) invoiceDataGrid.SelectedItem;
-            //var queryables = _context.Products
-            //    .Select(x => new { Product = x, Invoices = x.Invoices
-            //        .Where(x => x.Id == selectedItem.Id) 
-            //    })
-            //    .Where(x => x.Invoices.Count() > 0)
-            //    .Select(x => x.Product)
-            //    .AsEnumerable()
-            //    .ToList();
-            //selectedItem.Products = queryables;
 
             Customer customer = _context.Customers.Include("Address").Where(x => x.Id == selectedItem.Customer.Id).Single();
             selectedItem.Customer = customer;
@@ -148,6 +94,26 @@ namespace WPF_invoiceApp.template.dashboards
                 invoiceDataGrid.Items.Add(x);
             }
             invoiceDataGrid.Items.Refresh();
+        }
+
+        private void Button_Show_Click(object sender, RoutedEventArgs e)
+        {
+            Invoice selectedItem = (Invoice)invoiceDataGrid.SelectedItem;
+
+            List<InvoiceProduct> invoiceProducts = _context.InvoiceProducts.Include("Product").Include("Invoice").Where(x => x.InvoiceId == selectedItem.Id).ToList();
+            Customer foundCustomer = _context.Customers.Include("Address").Where(x => x.Id == selectedItem.CustomerId).Single();
+
+            selectedItem.InvoiceProducts = invoiceProducts;
+            selectedItem.Customer = foundCustomer;
+
+            InvoiceDetailsWindow invoiceDetailsWindow = new InvoiceDetailsWindow(selectedItem, _context);
+
+            RightViewBox.Children.Clear();
+
+            RightViewBox.VerticalAlignment = VerticalAlignment.Stretch;
+            RightViewBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            RightViewBox.Children.Add(invoiceDetailsWindow);
         }
     }
 }

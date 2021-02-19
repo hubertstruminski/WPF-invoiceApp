@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="WPF_invoiceApp.template.details.CompanyDetailsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_invoiceApp.template.details"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#C7C7C7">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="companyNameMainLabel" Grid.Row="0" Grid.Column="0" Text="Company Name Value" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Company name" FontSize="21" Padding="50,0,0,0" />
+            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                <TextBlock x:Name="companyNameTextField" FontSize="18" VerticalAlignment="Bottom" Text="Company Name Value" />
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Company address" FontSize="21" Padding="50,0,0,0" />
+            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                <TextBlock x:Name="addressTextField" FontSize="18" VerticalAlignment="Bottom" Text="Address Value" />
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Postal code" FontSize="21" Padding="50,0,0,0" />
+            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                <TextBlock x:Name="postalCodeTextField" FontSize="18" VerticalAlignment="Bottom" Text="postalCode Value" />
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="4" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="City" FontSize="21" Padding="50,0,0,0" />
+            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                <TextBlock x:Name="cityTextField" FontSize="18" VerticalAlignment="Bottom" Text="city Value" />
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="5" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Text="Country" FontSize="21" Padding="50,0,0,0" />
+            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1" Margin="50,0,50,0" VerticalAlignment="Center">
+                <TextBlock x:Name="countryTextField" FontSize="18" VerticalAlignment="Bottom" Text="country Value" />
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

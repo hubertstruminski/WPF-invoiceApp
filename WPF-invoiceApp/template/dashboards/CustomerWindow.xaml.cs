@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.template.details;
 
 namespace WPF_invoiceApp.template.dashboards
 {
@@ -35,26 +37,10 @@ namespace WPF_invoiceApp.template.dashboards
         {
             _context.Database.EnsureCreated();
 
-            //DbSet<Customer> customers = _context.Customers;
-            //foreach (Customer x in customers)
-            //{
-            //    _context.Customers.Remove(x);
-            //}
-
-            //_context.SaveChanges();
-
             _context.Addresses.Load();
             _context.Customers.Load();
 
             customerViewSource.Source = _context.Customers.Local.ToObservableCollection();
-
-            //Address address1 = new Address() { AddressName = "Spokojna 24/7B", Country = "Poland" };
-            //Address address2 = new Address() { AddressName = "Karmelicka 27/8", Country = "Poland" };
-
-            //_context.Customers.Add(new Customer() { Name = "Hubert Strumiński", Email = "hubert.struminski@microsoft.wsei.edu.pl", Address = address1, PhoneNumber = "+48500034440", Nip = "76543128", Website = "www.divelog.eu" });
-            //_context.Customers.Add(new Customer() { Name = "Robert Kazimierz", Email = "robert@wp.pl", Address = address2, PhoneNumber = "+48524014581", Nip = "85765434", Website = "www.google.com" });
-
-            //_context.SaveChanges();
         }
 
         private void OnSelectItem(object sender, SelectionChangedEventArgs e)
@@ -100,6 +86,27 @@ namespace WPF_invoiceApp.template.dashboards
                 customerDataGrid.Items.Add(x);
             }
             customerDataGrid.Items.Refresh();
+        }
+
+        private void Button_Show_Click(object sender, RoutedEventArgs e)
+        {
+            Customer selectedItem = (Customer)customerDataGrid.SelectedItem;
+
+            Customer foundCustomer = _context.Customers.Include("Invoices").Where(x => x.Id == selectedItem.Id).Single();
+
+            //List<InvoiceProduct> invoiceProducts = _context.InvoiceProducts.Include("Product").Include("Invoice").Where(x => x.ProductId == selectedItem.Id).ToList();
+
+            //Product foundProduct = _context.Products.Include("Tax").Include("InvoiceProducts").Where(x => x.Id == selectedItem.Id).Single();
+            //foundProduct.InvoiceProducts = invoiceProducts;
+
+            CustomerDetailsWindow customerDetailsWindow = new CustomerDetailsWindow(foundCustomer, _context);
+
+            RightViewBox.Children.Clear();
+
+            RightViewBox.VerticalAlignment = VerticalAlignment.Stretch;
+            RightViewBox.HorizontalAlignment = HorizontalAlignment.Stretch;
+
+            RightViewBox.Children.Add(customerDetailsWindow);
         }
     }
 }

@@ -35,8 +35,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.55*" />
             <ColumnDefinition Width="0.45*" />
+            <ColumnDefinition Width="0.55*" />
         </Grid.ColumnDefinitions>
 
         <DataGrid Grid.Column="0" x:Name="customerDataGrid" AutoGenerateColumns="False" 
@@ -126,10 +126,24 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Show">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Show" Background="#0DCAF0" BorderBrush="#0DCAF0" BorderThickness="1,1,1,1"
+                                    Click="Button_Show_Click" Margin="5" Foreground="#000074" Padding="5" Style="{StaticResource DataGridButton}">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid x:Name="RightViewBox" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label FontSize="16">View not available.</Label>
         </Grid>
     </Grid>
