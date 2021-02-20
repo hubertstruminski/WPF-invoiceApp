@@ -22,11 +22,6 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewCustomerWindow : Window
     {
-        private const string WEBSITE_TEXT = "www.divelog.eu";
-        private const string PHONE_TEXT = "+48 12 21 34 56";
-        private const string EMAIL_TEXT = "hubert.struminski@microsoft.wsei.edu.pl";
-        private const string NAME_TEXT = "Hubert Strumiński";
-
         private CustomerWindow customerWindow;
         private DatabaseContext context;
         private Customer customer;
@@ -37,7 +32,6 @@ namespace WPF_invoiceApp.template
         {
             this.context = context;
             InitializeComponent();
-            AssignPlaceholderHandlers();
             context.Database.EnsureCreated();
             address = new Address();
         }
@@ -64,85 +58,6 @@ namespace WPF_invoiceApp.template
             this.customerWindow = customerWindow;
         }
 
-        private void AssignPlaceholderHandlers()
-        {
-            nameTextField.GotFocus += NameTextField_GotFocus;
-            nameTextField.LostFocus += NameTextField_LostFocus;
-
-            emailTextField.GotFocus += EmailTextField_GotFocus;
-            emailTextField.LostFocus += EmailTextField_LostFocus;
-
-            phoneTextField.GotFocus += PhoneTextField_GotFocus;
-            phoneTextField.LostFocus += PhoneTextField_LostFocus;
-
-            websiteTextField.GotFocus += WebsiteTextField_GotFocus;
-            websiteTextField.LostFocus += WebsiteTextField_LostFocus;
-        }
-
-        private void WebsiteTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(websiteTextField.Text))
-            {
-                websiteTextField.Text = WEBSITE_TEXT;
-            }
-        }
-
-        private void WebsiteTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (websiteTextField.Text.Equals(WEBSITE_TEXT))
-            {
-                websiteTextField.Text = string.Empty;
-            }
-        }
-
-        private void PhoneTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(phoneTextField.Text))
-            {
-                phoneTextField.Text = PHONE_TEXT;
-            }
-        }
-
-        private void PhoneTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (phoneTextField.Text.Equals(PHONE_TEXT))
-            {
-                phoneTextField.Text = string.Empty;
-            }
-        }
-
-        private void EmailTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(emailTextField.Text))
-            {
-                emailTextField.Text = EMAIL_TEXT;
-            }
-        }
-
-        private void EmailTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (emailTextField.Text.Equals(EMAIL_TEXT))
-            {
-                emailTextField.Text = string.Empty;
-            }
-        }
-
-        private void NameTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if(string.IsNullOrWhiteSpace(nameTextField.Text))
-            {
-                nameTextField.Text = NAME_TEXT;
-            }
-        }
-
-        private void NameTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if(nameTextField.Text.Equals(NAME_TEXT))
-            {
-                nameTextField.Text = string.Empty;
-            }
-        }
-
         private void OnNewCustomerSaveButtonAction(object sender, RoutedEventArgs e)
         {
             bool isNameEmpty = false;
@@ -156,7 +71,7 @@ namespace WPF_invoiceApp.template
             bool isNipEmpty = false;
             bool isNipError = false;
 
-            if (new Regex(NAME_TEXT).IsMatch(nameTextField.Text))
+            if (nameTextField.Text.Length == 0)
                 isNameEmpty = true;
             else
             {
@@ -164,7 +79,7 @@ namespace WPF_invoiceApp.template
                     isNameError = true;
             }
 
-            if (new Regex(EMAIL_TEXT).IsMatch(emailTextField.Text))
+            if (emailTextField.Text.Length == 0)
                 isEmailEmpty = true;
             else
             {
@@ -186,7 +101,7 @@ namespace WPF_invoiceApp.template
             if (isNameEmpty)
             {
                 nameErrorLabel.Visibility = Visibility.Visible;
-                nameErrorLabel.Content = "Name field is required.";
+                nameErrorLabel.Content = "Name is required.";
             }
             else
             {
@@ -202,7 +117,7 @@ namespace WPF_invoiceApp.template
             if (isEmailEmpty)
             {
                 emailErrorLabel.Visibility = Visibility.Visible;
-                emailErrorLabel.Content = "Email field is required.";
+                emailErrorLabel.Content = "Email is required.";
             }
             else
             {
@@ -218,7 +133,7 @@ namespace WPF_invoiceApp.template
             if (isNewAddressEmpty)
             {
                 addressErrorLabel.Visibility = Visibility.Visible;
-                addressErrorLabel.Content = "Address field is required.";
+                addressErrorLabel.Content = "Address is required.";
             }
             else
             {
@@ -228,7 +143,7 @@ namespace WPF_invoiceApp.template
             if (isNipEmpty)
             {
                 nipErrorLabel.Visibility = Visibility.Visible;
-                nipErrorLabel.Content = "NIP field is required.";
+                nipErrorLabel.Content = "NIP is required.";
             }
             else
             {

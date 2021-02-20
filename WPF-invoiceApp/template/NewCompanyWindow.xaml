@@ -44,12 +44,76 @@
         <Label Content="City" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" FontSize="12" />
         <Label Content="Country" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" FontSize="12" />
 
-        <TextBox x:Name="companyNameTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Text="WSEI" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
-        <TextBox x:Name="addressTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Foreground="Gray" Text="Karmelicka 24/7" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
-        <TextBox x:Name="postalcodeTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Foreground="Gray" Text="30-054" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
-        <TextBox x:Name="cityTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Foreground="Gray" Text="Cracow" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
-        <TextBox x:Name="countryTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Stretch" Foreground="Gray" Text="Poland" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
-
+        <TextBox x:Name="companyNameTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="0" Padding="6,3,10,0" IsHitTestVisible="False" Text="WSEI" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=companyNameTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <TextBox x:Name="addressTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="2" Padding="6,3,10,0" IsHitTestVisible="False" Text="Karmelicka 24/7" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=addressTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <TextBox x:Name="postalcodeTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="4" Padding="6,3,10,0" IsHitTestVisible="False" Text="30-054" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=postalcodeTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <TextBox x:Name="cityTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="6" Padding="6,3,10,0" IsHitTestVisible="False" Text="Cracow" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=cityTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <TextBox x:Name="countryTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="8" Padding="6,3,10,0" IsHitTestVisible="False" Text="Poland" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=countryTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
         <Label x:Name="companyNameErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label x:Name="addressErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label x:Name="postalcodeErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>

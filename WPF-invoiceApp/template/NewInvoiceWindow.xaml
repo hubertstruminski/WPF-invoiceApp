@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_invoiceApp.template"
         mc:Ignorable="d"
-        Title="New invoice" Height="750" Width="400"
+        Title="New invoice" Height="800" Width="400"
         Style="{DynamicResource CustomWindowStyle}">
     <Window.Resources>
         <ResourceDictionary>
@@ -23,17 +23,17 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="55" />
             <RowDefinition Height="25" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="25" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="25" />
-            <RowDefinition />
+            <RowDefinition Height="55" />
             <RowDefinition  Height="25"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="25" />
-            <RowDefinition />
+            <RowDefinition Height="55"/>
             <RowDefinition Height="25" />
             <RowDefinition />
             <RowDefinition />
@@ -50,7 +50,7 @@
         <TextBox x:Name="numberTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
         <Calendar x:Name="datePicker" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center" DisplayDate="02/02/2021" />
         <Calendar x:Name="deadlinePicker" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" DisplayDate="02/10/2021"/>
-        <Button x:Name="addCustomerButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="6" Content="" HorizontalAlignment="Stretch" Foreground="Gray" VerticalAlignment="Center" HorizontalContentAlignment="Right" Click="AddCustomerButton_Click" />
+        <Button x:Name="addCustomerButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="6" Content=">" HorizontalAlignment="Stretch" Foreground="Gray" VerticalAlignment="Center" HorizontalContentAlignment="Right" Click="AddCustomerButton_Click" />
         <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="8">
             <Button x:Name="listProductsButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" HorizontalAlignment="Stretch" Content="" Foreground="Gray" VerticalAlignment="Center" HorizontalContentAlignment="Right" />
             <Grid>

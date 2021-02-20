@@ -35,8 +35,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.55*" />
-            <ColumnDefinition Width="0.45*" />
+            <ColumnDefinition Width="0.40*" />
+            <ColumnDefinition Width="0.6*" />
         </Grid.ColumnDefinitions>
 
         <DataGrid Grid.Column="0" x:Name="productDataGrid" AutoGenerateColumns="False" 

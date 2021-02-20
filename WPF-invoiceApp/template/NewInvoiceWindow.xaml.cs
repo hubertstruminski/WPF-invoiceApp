@@ -58,7 +58,6 @@ namespace WPF_invoiceApp.template
             commentTextField.Text = selectedItem.Comment;
 
             customer = selectedItem.Customer;
-            //products = selectedItem.Products;
 
             invoice = selectedItem;
             isUpdateFlag = true;
@@ -87,7 +86,7 @@ namespace WPF_invoiceApp.template
             if (numberTextField.Text.Length == 0)
                 isNumberEmpty = true;
 
-            if (addCustomerButton.Content.Equals(""))
+            if (addCustomerButton.Content.Equals(">"))
                 isCustomerEmpty = true;
 
             if (listProductsButton.Content.Equals(""))
@@ -125,18 +124,6 @@ namespace WPF_invoiceApp.template
 
             if(!isNumberEmpty && !isCustomerEmpty && !isProductEmpty)
             {
-                //context.Addresses.Load();
-
-                // var foundCustomer = await context.Customers.AsNoTracking().FirstAsync(x => x.Id == customer.Id);
-                //var list = new List<Product>();
-                //foreach(Product p1 in products)
-                //{
-                //    Product product = await context.Products.AsNoTracking().FirstAsync(x => x.Id == p1.Id);
-                //    context.Entry<Product>(product).State = EntityState.Detached;
-                //    list.Add(product);
-                //}
-                
-
                 invoice.Number = numberTextField.Text;
                 invoice.Date = datePicker.SelectedDate == null ? DateTime.Now : datePicker.SelectedDate.Value;
                 invoice.Deadline = deadlinePicker.SelectedDate == null ? DateTime.Now : deadlinePicker.SelectedDate.Value;
@@ -155,16 +142,6 @@ namespace WPF_invoiceApp.template
 
                     invoice.InvoiceProducts.Add(ip);
                 }
-
-                //foreach (Product product in products)
-                //{
-                //    context.Taxes.Attach(product.Tax);
-                //    context.Products.Attach(product);
-                //}
-                //Address address = context.Addresses.Include("Customer").Where(x => x.Id == customer.Address.Id).Single();
-                //context.Entry<Address>(address).State = EntityState.Detached;
-
-                //context.Customers.Attach(customer);
 
                 if (isUpdateFlag)
                     context.Invoices.Update(invoice);

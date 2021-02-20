@@ -21,10 +21,6 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewTaxWindow : Window
     {
-        private const string TAX_AMOUNT_TEXT = "23%";
-        private const string DESCRIPTION_TEXT = "VAT - new amount for customers";
-        private const string NAME_TEXT = "VAT";
-
         private TaxWindow taxWindow;
         private DatabaseContext context;
         private Tax tax;
@@ -34,7 +30,6 @@ namespace WPF_invoiceApp.template
         {
             this.context = context;
             InitializeComponent();
-            AssignPlaceholderHandlers();
             context.Database.EnsureCreated();
         }
 
@@ -50,67 +45,7 @@ namespace WPF_invoiceApp.template
             taxAmountTextField.Text = tax.TaxAmount;
             this.tax = tax;
             isUpdateFlag = true;
-            //context.Dispose();
             this.taxWindow = taxWindow;
-        }
-
-        private void AssignPlaceholderHandlers()
-        {
-            nameTextField.GotFocus += NameTextField_GotFocus;
-            nameTextField.LostFocus += NameTextField_LostFocus;
-
-            descriptionTextField.GotFocus += DescriptionTextField_GotFocus;
-            descriptionTextField.LostFocus += DescriptionTextField_LostFocus;
-
-            taxAmountTextField.GotFocus += TaxAmountTextField_GotFocus;
-            taxAmountTextField.LostFocus += TaxAmountTextField_LostFocus;
-        }
-
-        private void TaxAmountTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if(string.IsNullOrWhiteSpace(taxAmountTextField.Text)) {
-                taxAmountTextField.Text = TAX_AMOUNT_TEXT;
-            }
-        }
-
-        private void TaxAmountTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if(taxAmountTextField.Text.Equals(TAX_AMOUNT_TEXT))
-            {
-                taxAmountTextField.Text = string.Empty;
-            }
-        }
-
-        private void DescriptionTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if(string.IsNullOrWhiteSpace(descriptionTextField.Text))
-            {
-                descriptionTextField.Text = DESCRIPTION_TEXT;
-            }
-        }
-
-        private void DescriptionTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if(descriptionTextField.Text.Equals(DESCRIPTION_TEXT))
-            {
-                descriptionTextField.Text = string.Empty;
-            }
-        }
-
-        private void NameTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if(string.IsNullOrWhiteSpace(nameTextField.Text))
-            {
-                nameTextField.Text = NAME_TEXT;
-            }
-        }
-
-        private void NameTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if(nameTextField.Text.Equals(NAME_TEXT))
-            {
-                nameTextField.Text = string.Empty;
-            }
         }
 
         private void NewTaxSaveButton_Click(object sender, RoutedEventArgs e)
@@ -119,19 +54,19 @@ namespace WPF_invoiceApp.template
             bool isTaxDescriptionError = false;
             bool isTaxAmountError = false;
 
-            if (!new Regex(".{1,255}").IsMatch(nameTextField.Text) || new Regex(NAME_TEXT).IsMatch(nameTextField.Text))
+            if (!new Regex(".{1,255}").IsMatch(nameTextField.Text))
                 isTaxNameError = true;
 
-            if (!new Regex(".{0,255}").IsMatch(descriptionTextField.Text) || new Regex(DESCRIPTION_TEXT).IsMatch(descriptionTextField.Text))
+            if (!new Regex(".{0,255}").IsMatch(descriptionTextField.Text))
                 isTaxDescriptionError = true;
 
-            if (!new Regex("[0-9]+%$").IsMatch(taxAmountTextField.Text) || new Regex(TAX_AMOUNT_TEXT).IsMatch(taxAmountTextField.Text))
+            if (!new Regex("[0-9]+%$").IsMatch(taxAmountTextField.Text))
                 isTaxAmountError = true;
 
             if (isTaxNameError)
             {
                 taxNameErrorLabel.Visibility = Visibility.Visible;
-                taxNameErrorLabel.Content = "Name length ust be from 1 to 255 characters.";
+                taxNameErrorLabel.Content = "Name length must be from 1 to 255 characters.";
             }
             else
                 taxNameErrorLabel.Content = "";

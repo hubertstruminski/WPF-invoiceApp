@@ -21,12 +21,6 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewCompanyWindow : Window
     {
-        private const string COMPANY_NAME_TEXT = "WSEI";
-        private const string ADDRESS_TEXT = "Karmelicka 24/7";
-        private const string POSTAL_CODE_TEXT = "30-054";
-        private const string CITY_TEXT = "Cracow";
-        private const string COUNTRY_TEXT = "Poland";
-
         private CompanyWindow companyWindow;
         private DatabaseContext context;
         private Company company;
@@ -36,7 +30,6 @@ namespace WPF_invoiceApp.template
         {
             this.context = context;
             InitializeComponent();
-            AssignPlaceholderHandlers();
             context.Database.EnsureCreated();
         }
 
@@ -55,105 +48,7 @@ namespace WPF_invoiceApp.template
 
             this.company = company;
             isUpdateFlag = true;
-            //context.Dispose();
             this.companyWindow = companyWindow;
-        }
-
-        private void AssignPlaceholderHandlers()
-        {
-            companyNameTextField.GotFocus += CompanyNameTextField_GotFocus;
-            companyNameTextField.LostFocus += CompanyNameTextField_LostFocus;
-
-            addressTextField.GotFocus += AddressTextField_GotFocus;
-            addressTextField.LostFocus += AddressTextField_LostFocus;
-
-            postalcodeTextField.GotFocus += PostalcodeTextField_GotFocus;
-            postalcodeTextField.LostFocus += PostalcodeTextField_LostFocus;
-
-            cityTextField.GotFocus += CityTextField_GotFocus;
-            cityTextField.LostFocus += CityTextField_LostFocus;
-
-            countryTextField.GotFocus += CountryTextField_GotFocus;
-            countryTextField.LostFocus += CountryTextField_LostFocus;
-        }
-
-        private void CountryTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(countryTextField.Text))
-            {
-                countryTextField.Text = COUNTRY_TEXT;
-            }
-        }
-
-        private void CountryTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (countryTextField.Text.Equals(COUNTRY_TEXT))
-            {
-                countryTextField.Text = string.Empty;
-            }
-        }
-
-        private void CityTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(cityTextField.Text))
-            {
-                cityTextField.Text = CITY_TEXT;
-            }
-        }
-
-        private void CityTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (cityTextField.Text.Equals(CITY_TEXT))
-            {
-                cityTextField.Text = string.Empty;
-            }
-        }
-
-        private void PostalcodeTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(postalcodeTextField.Text))
-            {
-                postalcodeTextField.Text = POSTAL_CODE_TEXT;
-            }
-        }
-
-        private void PostalcodeTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (postalcodeTextField.Text.Equals(POSTAL_CODE_TEXT))
-            {
-                postalcodeTextField.Text = string.Empty;
-            }
-        }
-
-        private void AddressTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(addressTextField.Text))
-            {
-                addressTextField.Text = ADDRESS_TEXT;
-            }
-        }
-
-        private void AddressTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (addressTextField.Text.Equals(ADDRESS_TEXT)) { 
-                addressTextField.Text = string.Empty;
-            }
-        }
-
-        private void CompanyNameTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if(string.IsNullOrWhiteSpace(companyNameTextField.Text))
-            {
-                companyNameTextField.Text = COMPANY_NAME_TEXT;
-            }
-        }
-
-        private void CompanyNameTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if(companyNameTextField.Text.Equals(COMPANY_NAME_TEXT))
-            {
-                companyNameTextField.Text = string.Empty;
-            }
         }
 
         private void OnNewCompanySaveButton(object sender, RoutedEventArgs e)
@@ -173,7 +68,7 @@ namespace WPF_invoiceApp.template
             bool isCountryEmpty = false;
             bool isCountryError = false;
 
-            if (new Regex(COMPANY_NAME_TEXT).IsMatch(companyNameTextField.Text))
+            if (companyNameTextField.Text.Length == 0)
                 isCompanyNameEmpty = true;
             else
             {
@@ -181,7 +76,7 @@ namespace WPF_invoiceApp.template
                     isCompanyNameError = true;
             }
 
-            if (new Regex(ADDRESS_TEXT).IsMatch(addressTextField.Text))
+            if (addressTextField.Text.Length == 0)
                 isAddressEmpty = true;
             else
             {
@@ -189,7 +84,7 @@ namespace WPF_invoiceApp.template
                     isAddressError = true;
             }
 
-            if (new Regex(POSTAL_CODE_TEXT).IsMatch(postalcodeTextField.Text))
+            if (postalcodeTextField.Text.Length == 0)
                 isPostalCodeEmpty = true;
             else
             {
@@ -197,7 +92,7 @@ namespace WPF_invoiceApp.template
                     isPostalCodeError = true;
             }
 
-            if (new Regex(CITY_TEXT).IsMatch(cityTextField.Text))
+            if (cityTextField.Text.Length == 0)
                 isCityEmpty = true;
             else
             {
@@ -205,7 +100,7 @@ namespace WPF_invoiceApp.template
                     isCityError = true;
             }
 
-            if (new Regex(COUNTRY_TEXT).IsMatch(countryTextField.Text))
+            if (countryTextField.Text.Length == 0)
                 isCountryEmpty = true;
             else
             {
@@ -216,7 +111,7 @@ namespace WPF_invoiceApp.template
             if (isCompanyNameEmpty)
             {
                 companyNameErrorLabel.Visibility = Visibility.Visible;
-                companyNameErrorLabel.Content = "Company name field is required.";
+                companyNameErrorLabel.Content = "Company name is required.";
             }
             else
             {
@@ -232,7 +127,7 @@ namespace WPF_invoiceApp.template
             if (isAddressEmpty)
             {
                 addressErrorLabel.Visibility = Visibility.Visible;
-                addressErrorLabel.Content = "Address field is required.";
+                addressErrorLabel.Content = "Address is required.";
             }
             else
             {
@@ -248,7 +143,7 @@ namespace WPF_invoiceApp.template
             if (isPostalCodeEmpty)
             {
                 postalcodeErrorLabel.Visibility = Visibility.Visible;
-                postalcodeErrorLabel.Content = "PostalCode field is required.";
+                postalcodeErrorLabel.Content = "PostalCode is required.";
             }
             else
             {
@@ -264,7 +159,7 @@ namespace WPF_invoiceApp.template
             if (isCityEmpty)
             {
                 cityErrorLabel.Visibility = Visibility.Visible;
-                cityErrorLabel.Content = "City field is required.";
+                cityErrorLabel.Content = "City is required.";
             }
             else
             {
@@ -280,7 +175,7 @@ namespace WPF_invoiceApp.template
             if (isCountryEmpty)
             {
                 countryErrorLabel.Visibility = Visibility.Visible;
-                countryErrorLabel.Content = "Country field is required.";
+                countryErrorLabel.Content = "Country is required.";
             }
             else
             {

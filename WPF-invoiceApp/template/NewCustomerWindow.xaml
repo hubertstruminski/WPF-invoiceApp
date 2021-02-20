@@ -50,11 +50,64 @@
         <Label Content="NIP" HorizontalAlignment="Center" Grid.Row="9" VerticalAlignment="Center" FontSize="12" />
         <Label Content="Note" HorizontalAlignment="Center" Grid.Row="11" VerticalAlignment="Center" FontSize="12" />
 
-        <TextBox x:Name="nameTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Text="Hubert Strumiński" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
-        <TextBox x:Name="emailTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Foreground="Gray" Text="hubert.struminski@microsoft.wsei.edu.pl" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
-        <Button x:Name="newAddressButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Foreground="Gray" Content=">"  VerticalAlignment="Center" HorizontalContentAlignment="Right" Click="NewAddressButton_Click" />
-        <TextBox x:Name="phoneTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Foreground="Gray" Text="+48 12 21 34 56" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
-        <TextBox x:Name="websiteTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch" Foreground="Gray" Text="www.divelog.eu" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBox x:Name="nameTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="0" Padding="6,3,10,0" IsHitTestVisible="False" Text="Hubert Strumiński" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=nameTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <TextBox x:Name="emailTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="2" Padding="6,3,10,0" IsHitTestVisible="False" Text="hubert.struminski@microsoft.wsei.edu.pl" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=emailTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <Button x:Name="newAddressButton" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="4" Content=">" HorizontalAlignment="Stretch" Foreground="Gray" VerticalAlignment="Center" HorizontalContentAlignment="Right" Click="NewAddressButton_Click" />
+
+        <TextBox x:Name="phoneTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="6" Padding="6,3,10,0" IsHitTestVisible="False" Text="+48 12 21 34 56" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=phoneTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <TextBox x:Name="websiteTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="7" Padding="6,3,10,0" IsHitTestVisible="False" Text="www.divelog.eu" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=websiteTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
         <TextBox x:Name="nipTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="9" HorizontalAlignment="Stretch" Foreground="Gray" Text="" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
         <TextBox x:Name="noteTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="11" HorizontalAlignment="Stretch" Foreground="Gray" Text="" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
 

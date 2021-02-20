@@ -14,9 +14,6 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewAddressWindow : Window
     {
-        private const string ADDRESS_TEXT = "e.g. Obrońców Warszawy 34/12, Warsaw";
-        private const string COUNTRY_TEXT = "Poland";
-
         private CustomerWindow customerWindow;
         private NewCustomerWindow newCustomerWindow;
         private Button newAddressButton;
@@ -26,7 +23,6 @@ namespace WPF_invoiceApp.template
         public NewAddressWindow()
         {
             InitializeComponent();
-            AssignPlaceholderHandlers();
         }
 
         public NewAddressWindow(Address address, Button newAddressButton, 
@@ -51,47 +47,6 @@ namespace WPF_invoiceApp.template
             isUpdateFlag = true;
         }
 
-        private void AssignPlaceholderHandlers()
-        {
-            addressTextField.GotFocus += AddressTextField_GotFocus;
-            addressTextField.LostFocus += AddressTextField_LostFocus;
-
-            countryTextField.GotFocus += CountryTextField_GotFocus;
-            countryTextField.LostFocus += CountryTextField_LostFocus;
-        }
-
-        private void CountryTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if(string.IsNullOrWhiteSpace(countryTextField.Text))
-            {
-                countryTextField.Text = COUNTRY_TEXT;
-            }
-        }
-
-        private void CountryTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if(countryTextField.Text.Equals(COUNTRY_TEXT))
-            {
-                countryTextField.Text = string.Empty;
-            }
-        }
-
-        private void AddressTextField_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(addressTextField.Text))
-            {
-                addressTextField.Text = ADDRESS_TEXT;
-            }
-        }
-
-        private void AddressTextField_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if(addressTextField.Text.Equals(ADDRESS_TEXT))
-            {
-                addressTextField.Text = string.Empty;
-            }
-        }
-
         private void NewAddressSaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (!isUpdateFlag)
@@ -102,7 +57,7 @@ namespace WPF_invoiceApp.template
 
             bool isCountryError = false;
 
-            if (new Regex(ADDRESS_TEXT).IsMatch(addressTextField.Text))
+            if (addressTextField.Text.Length == 0)
                 isAddressEmpty = true;
             else
             {
@@ -116,7 +71,7 @@ namespace WPF_invoiceApp.template
             if (isAddressEmpty)
             {
                 addressErrorLabel.Visibility = Visibility.Visible;
-                addressErrorLabel.Content = "Address field is required.";
+                addressErrorLabel.Content = "Address is required.";
             }
             else
             {

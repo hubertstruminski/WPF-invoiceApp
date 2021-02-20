@@ -38,9 +38,48 @@
         <Label Content="Description" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" FontSize="13" />
         <Label Content="Amount" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" FontSize="13" />
 
-        <TextBox x:Name="nameTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Text="VAT" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
-        <TextBox x:Name="descriptionTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Foreground="Gray" Text="VAT - new amount for customers" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
-        <TextBox x:Name="taxAmountTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Foreground="Gray" Text="23%" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBox x:Name="nameTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="0" Padding="6,3,10,0" IsHitTestVisible="False" Text="VAT" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=nameTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <TextBox x:Name="descriptionTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="2" Padding="6,3,10,0" IsHitTestVisible="False" Text="VAT - new amount for customers" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=descriptionTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
+        <TextBox x:Name="taxAmountTextField" BorderBrush="Black" Background="Transparent" BorderThickness="0,0,0,1" Padding="7" FontSize="13" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Foreground="Gray" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Right" />
+        <TextBlock Grid.Column="1" Grid.Row="4" Padding="6,3,10,0" IsHitTestVisible="False" Text="23%" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=taxAmountTextField}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        
         <Label x:Name="taxNameErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label x:Name="taxDescriptionErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label x:Name="taxAmountErrorLabel" Foreground="Red" Visibility="Hidden" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
