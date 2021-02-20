@@ -25,27 +25,27 @@
             <MenuItem Header="Add" Height="Auto">
                 <MenuItem Header="New company" Click="OnNewCompanyClick">
                     <MenuItem.Icon>
-                        <Image Source="company.png" />
+                        <Image Source="/icons/company.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="New customer" Click="OnNewCustomerWindowClick">
                     <MenuItem.Icon>
-                        <Image Source="/iconfinder_engagement-customer-user-interaction-branding_3209311.png" />
+                        <Image Source="/icons/iconfinder_engagement-customer-user-interaction-branding_3209311.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="New product" Click="OnNewProductWindowClick">
                     <MenuItem.Icon>
-                        <Image Source="/iconfinder_Cart_2_372896.png" />
+                        <Image Source="/icons/iconfinder_Cart_2_372896.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="New invoice" Click="OnNewInvoiceWindowClick">
                     <MenuItem.Icon>
-                        <Image Source="/iconfinder_receipt_4172166.png" />
+                        <Image Source="/icons/iconfinder_receipt_4172166.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="New tax" Click="OnNewTaxWindowClick">
                     <MenuItem.Icon>
-                        <Image Source="/iconfinder_N_F009_07_TaxArtboard_1_copy_9_6570640.png" />
+                        <Image Source="/icons/iconfinder_N_F009_07_TaxArtboard_1_copy_9_6570640.png" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -68,31 +68,31 @@
 
                 <Button Padding="5" Background="#E5E5E5" BorderBrush="#BBBBBB" Grid.Row="0" Click="OnMyCompanyClick">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Height="40" Width="40" Margin="20" Source="/company.png" />
+                        <Image Height="30" Width="30" Margin="20" Source="/icons/company.png" />
                         <TextBlock FontWeight="Bold" FontStretch="UltraExpanded" VerticalAlignment="Center">My company</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Background="#E5E5E5" BorderBrush="#BBBBBB" Grid.Row="1" Click="OnCustomersClick">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Margin="20" Height="40" Width="40" Source="/iconfinder_engagement-customer-user-interaction-branding_3209311.png" />
+                        <Image Margin="20" Height="30" Width="30" Source="/icons/iconfinder_engagement-customer-user-interaction-branding_3209311.png" />
                         <TextBlock FontWeight="Bold" FontStretch="UltraExpanded" VerticalAlignment="Center">Customers</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Background="#E5E5E5" BorderBrush="#BBBBBB" Grid.Row="2" Click="OnInvoicesClick">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Margin="20" Height="40" Width="40" Source="/iconfinder_receipt_4172166.png" />
+                        <Image Margin="20" Height="30" Width="30" Source="/icons/iconfinder_receipt_4172166.png" />
                         <TextBlock FontWeight="Bold" FontStretch="UltraExpanded" VerticalAlignment="Center">Invoices</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Background="#E5E5E5" BorderBrush="#BBBBBB" Grid.Row="3" Click="OnProductsClick">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Margin="20" Height="40" Width="40" Source="/iconfinder_Cart_2_372896.png" />
+                        <Image Margin="20" Height="30" Width="30" Source="/icons/iconfinder_Cart_2_372896.png" />
                         <TextBlock FontWeight="Bold" FontStretch="UltraExpanded" VerticalAlignment="Center">Products</TextBlock>
                     </StackPanel>
                 </Button>
                 <Button Background="#E5E5E5" BorderBrush="#BBBBBB" Grid.Row="4" Click="OnTaxClick">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Margin="20" Height="40" Width="40" Source="/iconfinder_N_F009_07_TaxArtboard_1_copy_9_6570640.png" />
+                        <Image Margin="20" Height="30" Width="30" Source="/icons/iconfinder_N_F009_07_TaxArtboard_1_copy_9_6570640.png" />
                         <TextBlock FontWeight="Bold" FontStretch="UltraExpanded" VerticalAlignment="Center">Tax</TextBlock>
                     </StackPanel>
                 </Button>

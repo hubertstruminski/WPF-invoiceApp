@@ -27,11 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="company.png" />
-    <Resource Include="iconfinder_Cart_2_372896.png" />
-    <Resource Include="iconfinder_engagement-customer-user-interaction-branding_3209311.png" />
-    <Resource Include="iconfinder_N_F009_07_TaxArtboard_1_copy_9_6570640.png" />
-    <Resource Include="iconfinder_receipt_4172166.png" />
+    <Resource Include="icons\company.png" />
+    <Resource Include="icons\iconfinder_Cart_2_372896.png" />
+    <Resource Include="icons\iconfinder_engagement-customer-user-interaction-branding_3209311.png" />
+    <Resource Include="icons\iconfinder_N_F009_07_TaxArtboard_1_copy_9_6570640.png" />
+    <Resource Include="icons\iconfinder_receipt_4172166.png" />
   </ItemGroup>
 
   <ItemGroup>
