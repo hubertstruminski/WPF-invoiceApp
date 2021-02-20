@@ -34,8 +34,4 @@
     <Resource Include="icons\iconfinder_receipt_4172166.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="util\" />
-  </ItemGroup>
-
 </Project>

@@ -120,7 +120,7 @@
     <Page Update="template\NewTaxWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WindowChromeStyle.xaml">
+    <Page Update="util\WindowChromeStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
