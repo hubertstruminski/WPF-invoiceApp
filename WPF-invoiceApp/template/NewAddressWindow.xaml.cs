@@ -1,10 +1,7 @@
 ﻿using ClassLibrary;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using WPF_invoiceApp.context;
 using WPF_invoiceApp.template.dashboards;
 
 namespace WPF_invoiceApp.template
@@ -14,11 +11,12 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewAddressWindow : Window
     {
-        private CustomerWindow customerWindow;
-        private NewCustomerWindow newCustomerWindow;
-        private Button newAddressButton;
+        private readonly CustomerWindow customerWindow;
+        private readonly NewCustomerWindow newCustomerWindow;
+        private readonly Button newAddressButton;
+        private readonly bool isUpdateFlag = false;
+
         private Address address;
-        private bool isUpdateFlag = false;
 
         public NewAddressWindow()
         {

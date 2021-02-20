@@ -1,17 +1,7 @@
 ﻿using ClassLibrary;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WPF_invoiceApp.context;
 
 namespace WPF_invoiceApp.template.details
 {
@@ -20,15 +10,12 @@ namespace WPF_invoiceApp.template.details
     /// </summary>
     public partial class CustomerDetailsWindow : UserControl
     {
-        private DatabaseContext context;
-
-        public CustomerDetailsWindow(DatabaseContext context)
+        public CustomerDetailsWindow()
         {
             InitializeComponent();
-            this.context = context;
         }
 
-        public CustomerDetailsWindow(Customer selectedItem, DatabaseContext context) : this(context)
+        public CustomerDetailsWindow(Customer selectedItem) : this()
         {
             nameLabel.Text = selectedItem.Name;
             emailValueLabel.Text = selectedItem.Email;
@@ -75,7 +62,6 @@ namespace WPF_invoiceApp.template.details
 
                 Grid.SetColumn(s1c1, 0);
 
-                // ---------------------------
 
                 StackPanel s2c2 = new StackPanel();
                 s2c2.Orientation = Orientation.Vertical;
@@ -99,7 +85,6 @@ namespace WPF_invoiceApp.template.details
 
                 Grid.SetColumn(s2c2, 1);
 
-                // -------------------
 
                 StackPanel s3c3 = new StackPanel();
                 s3c3.Orientation = Orientation.Vertical;

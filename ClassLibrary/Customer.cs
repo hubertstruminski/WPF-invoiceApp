@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ClassLibrary
 {
@@ -13,7 +11,6 @@ namespace ClassLibrary
         public string Website { get; set; }
         public string Nip { get; set; }
         public string Note { get; set; }
-
         public long AddressId { get; set; }
         public Address Address { get; set; }
         public List<Invoice> Invoices { get; set; }

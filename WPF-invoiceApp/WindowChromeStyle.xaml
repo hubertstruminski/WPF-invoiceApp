@@ -38,7 +38,7 @@
                                     Height="15"
                                     Margin="5"
                                     DockPanel.Dock="Left"
-                                    Click="btnClose_Click"
+                                    Click="BtnClose_Click"
                                     Background="#EF5D58"
                                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
@@ -50,7 +50,7 @@
                                     DockPanel.Dock="Left"
                                     Background="#F3BF23"
                                     VerticalContentAlignment="Bottom"
-                                    Click="btnMinimize_Click"
+                                    Click="BtnMinimize_Click"
                                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
                             <Button x:Name="btnRestore"
@@ -60,7 +60,7 @@
                                     Margin="5" 
                                     DockPanel.Dock="Left"
                                     Background="#CFCFD1"
-                                    Click="btnRestore_Click"
+                                    Click="BtnRestore_Click"
                                     WindowChrome.IsHitTestVisibleInChrome="True" />
 
                             <TextBlock Margin="5,0,0,0"

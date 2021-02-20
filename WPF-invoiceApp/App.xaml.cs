@@ -1,11 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using WPF_invoiceApp.context;
 using WPF_invoiceApp.template;
@@ -19,7 +13,7 @@ namespace WPF_invoiceApp
     /// </summary>
     public partial class App : Application
     {
-        private ServiceProvider serviceProvider;
+        private readonly ServiceProvider serviceProvider;
 
         public App()
         {

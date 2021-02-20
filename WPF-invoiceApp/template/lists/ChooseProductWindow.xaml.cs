@@ -1,16 +1,8 @@
 ﻿using ClassLibrary;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WPF_invoiceApp.context;
 
 namespace WPF_invoiceApp.template.lists
@@ -20,16 +12,16 @@ namespace WPF_invoiceApp.template.lists
     /// </summary>
     public partial class ChooseProductWindow : Window
     {
-        private DatabaseContext _context;
-        private CollectionViewSource productViewSource;
+        private readonly DatabaseContext _context;
+        private readonly CollectionViewSource productViewSource;
 
-        private NewInvoiceWindow newInvoiceWindow;
+        private readonly NewInvoiceWindow newInvoiceWindow;
 
         public ChooseProductWindow(DatabaseContext context)
         {
             _context = context;
             InitializeComponent();
-            productViewSource = (CollectionViewSource)FindResource(nameof(productViewSource));
+            productViewSource = (CollectionViewSource) FindResource(nameof(productViewSource));
         }
 
         public ChooseProductWindow(NewInvoiceWindow newInvoiceWindow, DatabaseContext context) : this(context)

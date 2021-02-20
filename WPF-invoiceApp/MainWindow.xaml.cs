@@ -1,22 +1,6 @@
-﻿using ClassLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using WPF_invoiceApp.context;
 using WPF_invoiceApp.template;
-
-using Microsoft.EntityFrameworkCore;
 using WPF_invoiceApp.template.dashboards;
 
 namespace WPF_invoiceApp
@@ -28,11 +12,11 @@ namespace WPF_invoiceApp
     {
         private readonly DatabaseContext _context;
 
-        private CompanyWindow companyWindow;
-        private CustomerWindow customerWindow;
-        private InvoiceWindow invoiceWindow;
-        private ProductWindow productWindow;
-        private TaxWindow taxWindow;
+        private readonly CompanyWindow companyWindow;
+        private readonly CustomerWindow customerWindow;
+        private readonly InvoiceWindow invoiceWindow;
+        private readonly ProductWindow productWindow;
+        private readonly TaxWindow taxWindow;
 
         public MainWindow(DatabaseContext context)
         {
@@ -41,7 +25,6 @@ namespace WPF_invoiceApp
 
             _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
-
 
             companyWindow = new CompanyWindow(_context);
             customerWindow = new CustomerWindow(_context);

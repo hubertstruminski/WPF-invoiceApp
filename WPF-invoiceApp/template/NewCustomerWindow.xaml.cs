@@ -1,17 +1,6 @@
 ﻿using ClassLibrary;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WPF_invoiceApp.context;
 using WPF_invoiceApp.template.dashboards;
 
@@ -22,11 +11,12 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewCustomerWindow : Window
     {
-        private CustomerWindow customerWindow;
-        private DatabaseContext context;
+        private readonly CustomerWindow customerWindow;
+        private readonly DatabaseContext context;
+        private readonly bool isUpdateFlag = false;
+
         private Customer customer;
         private Address address;
-        private bool isUpdateFlag = false;
 
         public NewCustomerWindow(DatabaseContext context)
         {

@@ -1,18 +1,7 @@
 ﻿using ClassLibrary;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WPF_invoiceApp.context;
 using WPF_invoiceApp.template.dashboards;
 using WPF_invoiceApp.template.lists;
@@ -24,14 +13,13 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewInvoiceWindow : Window
     {
-        private const string BUTTON_TEXT = ">";
+        private readonly InvoiceWindow invoiceWindow;
+        private readonly DatabaseContext context;
+        private readonly Invoice invoice;
+        private readonly List<Product> products;
+        private readonly bool isUpdateFlag = false;
 
-        private InvoiceWindow invoiceWindow;
-        private DatabaseContext context;
-        private Invoice invoice;
         private Customer customer;
-        private List<Product> products;
-        private bool isUpdateFlag = false;
 
         public NewInvoiceWindow(DatabaseContext context)
         {
@@ -153,7 +141,6 @@ namespace WPF_invoiceApp.template
 
                 this.Close();
             }
-
         }
 
         public void SetCustomer(Customer selectedItem)
@@ -173,11 +160,6 @@ namespace WPF_invoiceApp.template
             ChooseCustomerWindow chooseCustomerWindow = new ChooseCustomerWindow(this, context);
             chooseCustomerWindow.Owner = Application.Current.MainWindow;
             chooseCustomerWindow.ShowDialog();
-        }
-
-        public async Task<Address> GetNoTrackingAddress(long id)
-        {
-            return await context.Addresses.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

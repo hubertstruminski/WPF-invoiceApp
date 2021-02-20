@@ -1,17 +1,8 @@
 ﻿using ClassLibrary;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPF_invoiceApp.context;
 using WPF_invoiceApp.template.details;
 
@@ -23,7 +14,7 @@ namespace WPF_invoiceApp.template.dashboards
     public partial class CompanyWindow : UserControl
     {
         private readonly DatabaseContext _context;
-        private CollectionViewSource companyViewSource;
+        private readonly CollectionViewSource companyViewSource;
 
         public CompanyWindow(DatabaseContext context)
         {
@@ -41,11 +32,6 @@ namespace WPF_invoiceApp.template.dashboards
             companyViewSource.Source = _context.Companies.Local.ToObservableCollection();
         }
 
-        private void OnSelectItem(object sender, SelectionChangedEventArgs e)
-        {
-            Company selectedItem = (Company)companyDataGrid.SelectedItem;
-        }
-
         private void CompanyDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
@@ -60,7 +46,6 @@ namespace WPF_invoiceApp.template.dashboards
             _context.Companies.Remove(selectedItem);
             _context.SaveChanges();
 
-            // MUST BE FOR REFRESH COUNTER COLUMN AFTER PERFORM DELETE ACTION
             RefreshCompanyGridData();
         }
 
@@ -89,7 +74,7 @@ namespace WPF_invoiceApp.template.dashboards
         {
             Company selectedItem = (Company)companyDataGrid.SelectedItem;
 
-            CompanyDetailsWindow companyDetailsWindow = new CompanyDetailsWindow(selectedItem, _context);
+            CompanyDetailsWindow companyDetailsWindow = new CompanyDetailsWindow(selectedItem);
 
             RightViewBox.Children.Clear();
 

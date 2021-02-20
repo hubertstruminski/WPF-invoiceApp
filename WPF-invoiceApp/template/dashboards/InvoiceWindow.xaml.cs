@@ -1,18 +1,10 @@
 ﻿using ClassLibrary;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPF_invoiceApp.context;
 using WPF_invoiceApp.template.details;
 
@@ -24,7 +16,7 @@ namespace WPF_invoiceApp.template.dashboards
     public partial class InvoiceWindow : UserControl
     {
         private readonly DatabaseContext _context;
-        private CollectionViewSource invoiceViewSource;
+        private readonly CollectionViewSource invoiceViewSource;
 
         public InvoiceWindow(DatabaseContext context)
         {
@@ -45,11 +37,6 @@ namespace WPF_invoiceApp.template.dashboards
             invoiceViewSource.Source = _context.Invoices.Local.ToObservableCollection();
         }
 
-        private void OnSelectItem(object sender, SelectionChangedEventArgs e)
-        {
-            Invoice selectedItem = (Invoice) invoiceDataGrid.SelectedItem;
-        }
-
         private void InvoiceDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
@@ -64,7 +51,6 @@ namespace WPF_invoiceApp.template.dashboards
             _context.Invoices.Remove(selectedItem);
             _context.SaveChanges();
 
-            // MUST BE FOR REFRESH COUNTER COLUMN AFTER PERFORM DELETE ACTION
             RefreshInvoiceGridData();
         }
 
@@ -106,7 +92,7 @@ namespace WPF_invoiceApp.template.dashboards
             selectedItem.InvoiceProducts = invoiceProducts;
             selectedItem.Customer = foundCustomer;
 
-            InvoiceDetailsWindow invoiceDetailsWindow = new InvoiceDetailsWindow(selectedItem, _context);
+            InvoiceDetailsWindow invoiceDetailsWindow = new InvoiceDetailsWindow(selectedItem);
 
             RightViewBox.Children.Clear();
 

@@ -1,17 +1,6 @@
 ﻿using ClassLibrary;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WPF_invoiceApp.context;
 
 namespace WPF_invoiceApp.template.details
 {
@@ -20,15 +9,12 @@ namespace WPF_invoiceApp.template.details
     /// </summary>
     public partial class InvoiceDetailsWindow : UserControl
     {
-        private DatabaseContext context;
-
-        public InvoiceDetailsWindow(DatabaseContext context)
+        public InvoiceDetailsWindow()
         {
             InitializeComponent();
-            this.context = context;
         }
 
-        public InvoiceDetailsWindow(Invoice selectedItem, DatabaseContext context) : this(context)
+        public InvoiceDetailsWindow(Invoice selectedItem) : this()
         {
             numberInvoiceValueLabel.Text = selectedItem.Number;
             dateValueLabel.Text = selectedItem.Date.ToString();

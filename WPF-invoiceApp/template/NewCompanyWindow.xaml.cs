@@ -1,16 +1,6 @@
 ﻿using ClassLibrary;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WPF_invoiceApp.context;
 using WPF_invoiceApp.template.dashboards;
 
@@ -21,10 +11,11 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewCompanyWindow : Window
     {
-        private CompanyWindow companyWindow;
-        private DatabaseContext context;
+        private readonly CompanyWindow companyWindow;
+        private readonly DatabaseContext context;
+        private readonly bool isUpdateFlag = false;
+
         private Company company;
-        private bool isUpdateFlag = false;
 
         public NewCompanyWindow(DatabaseContext context)
         {

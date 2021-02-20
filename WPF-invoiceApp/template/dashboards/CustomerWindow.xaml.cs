@@ -1,18 +1,9 @@
 ﻿using ClassLibrary;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPF_invoiceApp.context;
 using WPF_invoiceApp.template.details;
 
@@ -24,13 +15,13 @@ namespace WPF_invoiceApp.template.dashboards
     public partial class CustomerWindow : UserControl
     {
         private readonly DatabaseContext _context;
-        private CollectionViewSource customerViewSource;
+        private readonly CollectionViewSource customerViewSource;
 
         public CustomerWindow(DatabaseContext context)
         {
             _context = context;
             InitializeComponent();
-            customerViewSource = (CollectionViewSource)FindResource(nameof(customerViewSource));
+            customerViewSource = (CollectionViewSource) FindResource(nameof(customerViewSource));
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -41,11 +32,6 @@ namespace WPF_invoiceApp.template.dashboards
             _context.Customers.Load();
 
             customerViewSource.Source = _context.Customers.Local.ToObservableCollection();
-        }
-
-        private void OnSelectItem(object sender, SelectionChangedEventArgs e)
-        {
-            Customer selectedItem = (Customer) customerDataGrid.SelectedItem;
         }
 
         private void CustomerDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
@@ -62,7 +48,6 @@ namespace WPF_invoiceApp.template.dashboards
             _context.Customers.Remove(selectedItem);
             _context.SaveChanges();
 
-            // MUST BE FOR REFRESH COUNTER COLUMN AFTER PERFORM DELETE ACTION
             RefreshCustomerGridData();
         }
 
@@ -93,13 +78,7 @@ namespace WPF_invoiceApp.template.dashboards
             Customer selectedItem = (Customer)customerDataGrid.SelectedItem;
 
             Customer foundCustomer = _context.Customers.Include("Invoices").Where(x => x.Id == selectedItem.Id).Single();
-
-            //List<InvoiceProduct> invoiceProducts = _context.InvoiceProducts.Include("Product").Include("Invoice").Where(x => x.ProductId == selectedItem.Id).ToList();
-
-            //Product foundProduct = _context.Products.Include("Tax").Include("InvoiceProducts").Where(x => x.Id == selectedItem.Id).Single();
-            //foundProduct.InvoiceProducts = invoiceProducts;
-
-            CustomerDetailsWindow customerDetailsWindow = new CustomerDetailsWindow(foundCustomer, _context);
+            CustomerDetailsWindow customerDetailsWindow = new CustomerDetailsWindow(foundCustomer);
 
             RightViewBox.Children.Clear();
 

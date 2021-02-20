@@ -44,7 +44,7 @@
           VerticalGridLinesBrush="White" HorizontalGridLinesBrush="Transparent"
           EnableRowVirtualization="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
           ItemsSource="{Binding Source={StaticResource invoiceViewSource}}" 
-          RowDetailsVisibilityMode="VisibleWhenSelected" CanUserReorderColumns="False" CanUserAddRows="False" SelectionChanged="OnSelectItem">
+          RowDetailsVisibilityMode="VisibleWhenSelected" CanUserReorderColumns="False" CanUserAddRows="False">
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
                     <Style.Triggers>

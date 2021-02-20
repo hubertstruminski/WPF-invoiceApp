@@ -1,32 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 
 namespace WPF_invoiceApp
 {
     partial class WindowChromeStyle
     {
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
         {
             var window = (Window)((FrameworkElement)sender).TemplatedParent;
-            window.WindowState = System.Windows.WindowState.Minimized;
+            window.WindowState = WindowState.Minimized;
         }
 
-        private void btnRestore_Click(object sender, RoutedEventArgs e)
+        private void BtnRestore_Click(object sender, RoutedEventArgs e)
         {
             var window = (Window)((FrameworkElement)sender).TemplatedParent;
-            if (window.WindowState == System.Windows.WindowState.Normal)
+            if (window.WindowState == WindowState.Normal)
             {
-                window.WindowState = System.Windows.WindowState.Maximized;
+                window.WindowState = WindowState.Maximized;
             }
             else
             {
-                window.WindowState = System.Windows.WindowState.Normal;
+                window.WindowState = WindowState.Normal;
             }
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             var window = (Window)((FrameworkElement)sender).TemplatedParent;
             window.Close();

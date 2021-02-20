@@ -1,16 +1,7 @@
 ﻿using ClassLibrary;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WPF_invoiceApp.context;
 using WPF_invoiceApp.template.dashboards;
 using WPF_invoiceApp.template.lists;
@@ -22,10 +13,11 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewProductWindow : Window
     {
-        private ProductWindow productWindow;
-        private DatabaseContext context;
+        private readonly ProductWindow productWindow;
+        private readonly DatabaseContext context;
+        private readonly bool isUpdateFlag;
+
         private Tax tax;
-        private bool isUpdateFlag;
         private Product product;
 
 
@@ -235,7 +227,6 @@ namespace WPF_invoiceApp.template
                 productWindow.RefreshProductGridData();
                 this.Close();
             }
-
         }
 
         public void SetTax(Tax newItem)
