@@ -31,8 +31,6 @@ namespace WPF_invoiceApp.template.lists
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _context.Database.EnsureCreated();
-
             _context.Taxes.Load();
             _context.Products.Load();
 
@@ -64,7 +62,7 @@ namespace WPF_invoiceApp.template.lists
         {
             Product selectedItem = (Product)productDataGrid.SelectedItem;
             newInvoiceWindow.SetProduct(selectedItem);
-            this.Close();
+            Close();
         }
     }
 }

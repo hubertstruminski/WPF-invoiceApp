@@ -1,5 +1,6 @@
 ﻿using ClassLibrary;
 using System.Windows.Controls;
+using WPF_invoiceApp.service;
 
 namespace WPF_invoiceApp.template.details
 {
@@ -8,6 +9,8 @@ namespace WPF_invoiceApp.template.details
     /// </summary>
     public partial class ProductDetailsWindow : UserControl
     {
+        private readonly ProductService service = new ProductService();
+
         public ProductDetailsWindow()
         {
             InitializeComponent();
@@ -30,11 +33,7 @@ namespace WPF_invoiceApp.template.details
             int count = 1;
             foreach(InvoiceProduct ip in selectedItem.InvoiceProducts)
             {
-                TextBlock text = new TextBlock();
-                text.Text = count + ". Number: " + ip.Invoice.Number + ", Date: " + ip.Invoice.Date + ", Deadline: " + ip.Invoice.Deadline;
-                text.FontSize = 16;
-              
-                scrollViewer.Children.Add(text);
+                scrollViewer.Children.Add(service.CreateInvoiceTextBlock(ip, count));
                 count++;
             }
         }

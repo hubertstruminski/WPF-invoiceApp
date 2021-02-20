@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.repository;
+using WPF_invoiceApp.service;
 using WPF_invoiceApp.template.details;
 
 namespace WPF_invoiceApp.template.dashboards
@@ -16,6 +18,9 @@ namespace WPF_invoiceApp.template.dashboards
         private readonly DatabaseContext _context;
         private readonly CollectionViewSource companyViewSource;
 
+        private readonly CompanyRepository companyRepository = new CompanyRepository();
+        private readonly CompanyService service = new CompanyService(); 
+
         public CompanyWindow(DatabaseContext context)
         {
             _context = context;
@@ -25,10 +30,7 @@ namespace WPF_invoiceApp.template.dashboards
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _context.Database.EnsureCreated();
-
             _context.Companies.Load();
-
             companyViewSource.Source = _context.Companies.Local.ToObservableCollection();
         }
 
@@ -42,9 +44,7 @@ namespace WPF_invoiceApp.template.dashboards
             Company selectedItem = (Company)companyDataGrid.SelectedItem;
 
             _context.Companies.Load();
-
-            _context.Companies.Remove(selectedItem);
-            _context.SaveChanges();
+            companyRepository.RemoveCompany(selectedItem, _context);
 
             RefreshCompanyGridData();
         }
@@ -75,13 +75,7 @@ namespace WPF_invoiceApp.template.dashboards
             Company selectedItem = (Company)companyDataGrid.SelectedItem;
 
             CompanyDetailsWindow companyDetailsWindow = new CompanyDetailsWindow(selectedItem);
-
-            RightViewBox.Children.Clear();
-
-            RightViewBox.VerticalAlignment = VerticalAlignment.Stretch;
-            RightViewBox.HorizontalAlignment = HorizontalAlignment.Stretch;
-
-            RightViewBox.Children.Add(companyDetailsWindow);
+            service.OnSubViewDetailsShow(companyDetailsWindow, RightViewBox);
         }
     }
 }

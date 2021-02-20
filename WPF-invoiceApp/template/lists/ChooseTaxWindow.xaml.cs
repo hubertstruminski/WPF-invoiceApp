@@ -31,8 +31,6 @@ namespace WPF_invoiceApp.template.lists
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _context.Database.EnsureCreated();
-
             _context.Taxes.Load();
             taxViewSource.Source = _context.Taxes.Local.ToObservableCollection();
         }
@@ -58,7 +56,7 @@ namespace WPF_invoiceApp.template.lists
         {
             Tax selectedItem = (Tax) taxDataGrid.SelectedItem;
             newProductWindow.SetTax(selectedItem);
-            this.Close();
+            Close();
         }
     }
 }

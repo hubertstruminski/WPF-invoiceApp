@@ -6,6 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.repository;
+using WPF_invoiceApp.service;
 using WPF_invoiceApp.template.details;
 
 namespace WPF_invoiceApp.template.dashboards
@@ -18,6 +20,10 @@ namespace WPF_invoiceApp.template.dashboards
         private readonly DatabaseContext _context;
         private readonly CollectionViewSource productViewSource;
 
+        private readonly ProductRepository repository = new ProductRepository();
+        private readonly InvoiceProductsRepository invoiceProductsRepository = new InvoiceProductsRepository();
+        private readonly ProductService service = new ProductService();
+
         public ProductWindow(DatabaseContext context)
         {
             _context = context;
@@ -27,10 +33,7 @@ namespace WPF_invoiceApp.template.dashboards
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _context.Database.EnsureCreated();
-
             _context.Products.Load();
-
             productViewSource.Source = _context.Products.Local.ToObservableCollection();
         }
 
@@ -44,10 +47,8 @@ namespace WPF_invoiceApp.template.dashboards
             Product selectedItem = (Product) productDataGrid.SelectedItem;
 
             _context.Products.Load();
-
-            _context.Products.Remove(selectedItem);
-            _context.SaveChanges();
-
+            repository.RemoveProduct(selectedItem, _context);
+            
             RefreshProductGridData();
         }
 
@@ -77,19 +78,11 @@ namespace WPF_invoiceApp.template.dashboards
         {
             Product selectedItem = (Product) productDataGrid.SelectedItem;
 
-            List<InvoiceProduct> invoiceProducts = _context.InvoiceProducts.Include("Product").Include("Invoice").Where(x => x.ProductId == selectedItem.Id).ToList();
-            
-            Product foundProduct = _context.Products.Include("Tax").Include("InvoiceProducts").Where(x => x.Id == selectedItem.Id).Single();
-            foundProduct.InvoiceProducts = invoiceProducts;
+            Product foundProduct = repository.FindByIdWithTaxAndInvoiceProducts(selectedItem, _context);
+            foundProduct.InvoiceProducts = invoiceProductsRepository.FindInvoiceProductsWithProductAndInvoiceByProductId(selectedItem, _context);
 
             ProductDetailsWindow productDetailsWindow = new ProductDetailsWindow(foundProduct);
-
-            RightViewBox.Children.Clear();
-
-            RightViewBox.VerticalAlignment = VerticalAlignment.Stretch;
-            RightViewBox.HorizontalAlignment = HorizontalAlignment.Stretch;
-
-            RightViewBox.Children.Add(productDetailsWindow);
+            service.OnSubViewDetailsShow(productDetailsWindow, RightViewBox);
         }
     }
 }

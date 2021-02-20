@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using WPF_invoiceApp.service;
 using WPF_invoiceApp.template.dashboards;
 
 namespace WPF_invoiceApp.template
@@ -11,6 +12,8 @@ namespace WPF_invoiceApp.template
     /// </summary>
     public partial class NewAddressWindow : Window
     {
+        private readonly AddressService service = new AddressService();
+
         private readonly CustomerWindow customerWindow;
         private readonly NewCustomerWindow newCustomerWindow;
         private readonly Button newAddressButton;
@@ -50,46 +53,8 @@ namespace WPF_invoiceApp.template
             if (!isUpdateFlag)
                 address = new Address();
 
-            bool isAddressEmpty = false;
-            bool isAddressError = false;
-
-            bool isCountryError = false;
-
-            if (addressTextField.Text.Length == 0)
-                isAddressEmpty = true;
-            else
-            {
-                if (!new Regex(".{1,255}").IsMatch(addressTextField.Text))
-                    isAddressError = true;
-            }
-
-            if (!new Regex(".{0,255}").IsMatch(addressTextField.Text))
-                isCountryError = true;
-
-            if (isAddressEmpty)
-            {
-                addressErrorLabel.Visibility = Visibility.Visible;
-                addressErrorLabel.Content = "Address is required.";
-            }
-            else
-            {
-                if (isAddressError)
-                {
-                    addressErrorLabel.Visibility = Visibility.Visible;
-                    addressErrorLabel.Content = "Required length is from 1 to 255 characters.";
-                }
-                else
-                    addressErrorLabel.Content = "";
-            }
-
-            if (isCountryError)
-            {
-                countryErrorLabel.Visibility = Visibility.Visible;
-                countryErrorLabel.Content = "Maximum length is to 255 characters.";
-            }
-            else
-                countryErrorLabel.Content = "";
-
+            (bool isAddressEmpty, bool isAddressError) = service.ValidateAddressTextField(addressTextField, addressErrorLabel);
+            bool isCountryError = service.ValidateCountryTextField(countryTextField, countryErrorLabel);
 
             if (isUpdateFlag)
             {

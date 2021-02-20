@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.service;
 using WPF_invoiceApp.template;
 using WPF_invoiceApp.template.dashboards;
 
@@ -18,6 +19,8 @@ namespace WPF_invoiceApp
         private readonly ProductWindow productWindow;
         private readonly TaxWindow taxWindow;
 
+        private readonly MainWindowService service = new MainWindowService();
+
         public MainWindow(DatabaseContext context)
         {
             _context = context;
@@ -35,62 +38,52 @@ namespace WPF_invoiceApp
 
         private void OnMyCompanyClick(object sender, RoutedEventArgs e)
         {
-            RightViewBox.Children.Clear();
-            RightViewBox.Children.Add(companyWindow);
+            service.OnSubViewStartup(RightViewBox, companyWindow);
         }
 
         private void OnCustomersClick(object sender, RoutedEventArgs e)
         {
-            RightViewBox.Children.Clear();
-            RightViewBox.Children.Add(customerWindow);
+            service.OnSubViewStartup(RightViewBox, customerWindow);
         }
 
         private void OnInvoicesClick(object sender, RoutedEventArgs e)
         {
-            RightViewBox.Children.Clear();
-            RightViewBox.Children.Add(invoiceWindow);
+            service.OnSubViewStartup(RightViewBox, invoiceWindow);
         }
 
         private void OnProductsClick(object sender, RoutedEventArgs e)
         {
-            RightViewBox.Children.Clear();
-            RightViewBox.Children.Add(productWindow);
+            service.OnSubViewStartup(RightViewBox, productWindow);
         }
 
         private void OnTaxClick(object sender, RoutedEventArgs e)
         {
-            RightViewBox.Children.Clear();
-            RightViewBox.Children.Add(taxWindow);
+            service.OnSubViewStartup(RightViewBox, taxWindow);
         }
 
         private void OnNewTaxWindowClick(object sender, RoutedEventArgs e)
         {
-            NewTaxWindow newTaxWindow = new NewTaxWindow(taxWindow, _context);
-            newTaxWindow.ShowDialog();
+            service.OnNewWindowStartup(typeof(NewTaxWindow), taxWindow, _context);
         }
 
         private void OnNewCompanyClick(object sender, RoutedEventArgs e)
         {
-            NewCompanyWindow newCompanyWindow = new NewCompanyWindow(companyWindow, _context);
-            newCompanyWindow.ShowDialog();
+            service.OnNewWindowStartup(typeof(NewCompanyWindow), companyWindow, _context);
         }
 
         private void OnNewCustomerWindowClick(object sender, RoutedEventArgs e)
         {
-            NewCustomerWindow newCustomerWindow = new NewCustomerWindow(customerWindow, _context);
-            newCustomerWindow.ShowDialog();
+            service.OnNewWindowStartup(typeof(NewCustomerWindow), customerWindow, _context);
         }
 
         private void OnNewProductWindowClick(object sender, RoutedEventArgs e)
         {
-            NewProductWindow newProductWindow = new NewProductWindow(productWindow, _context);
-            newProductWindow.ShowDialog();
+            service.OnNewWindowStartup(typeof(NewProductWindow), productWindow, _context);
         }
         
         private void OnNewInvoiceWindowClick(object sender, RoutedEventArgs e)
         {
-            NewInvoiceWindow newInvoiceWindow = new NewInvoiceWindow(invoiceWindow, _context);
-            newInvoiceWindow.ShowDialog();
+            service.OnNewWindowStartup(typeof(NewInvoiceWindow), invoiceWindow, _context);
         }
     }
 }

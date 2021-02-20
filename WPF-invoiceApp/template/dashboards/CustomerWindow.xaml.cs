@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.repository;
+using WPF_invoiceApp.service;
 using WPF_invoiceApp.template.details;
 
 namespace WPF_invoiceApp.template.dashboards
@@ -17,6 +19,9 @@ namespace WPF_invoiceApp.template.dashboards
         private readonly DatabaseContext _context;
         private readonly CollectionViewSource customerViewSource;
 
+        private readonly CustomerRepository repository = new CustomerRepository();
+        private readonly CustomerService service = new CustomerService();
+
         public CustomerWindow(DatabaseContext context)
         {
             _context = context;
@@ -26,8 +31,6 @@ namespace WPF_invoiceApp.template.dashboards
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _context.Database.EnsureCreated();
-
             _context.Addresses.Load();
             _context.Customers.Load();
 
@@ -44,9 +47,7 @@ namespace WPF_invoiceApp.template.dashboards
             Customer selectedItem = (Customer) customerDataGrid.SelectedItem;
 
             _context.Customers.Load();
-
-            _context.Customers.Remove(selectedItem);
-            _context.SaveChanges();
+            repository.RemoveCustomer(selectedItem, _context);
 
             RefreshCustomerGridData();
         }
@@ -76,16 +77,10 @@ namespace WPF_invoiceApp.template.dashboards
         private void Button_Show_Click(object sender, RoutedEventArgs e)
         {
             Customer selectedItem = (Customer)customerDataGrid.SelectedItem;
-
-            Customer foundCustomer = _context.Customers.Include("Invoices").Where(x => x.Id == selectedItem.Id).Single();
+            Customer foundCustomer = repository.FindCustomerInvoicesById(selectedItem, _context);
             CustomerDetailsWindow customerDetailsWindow = new CustomerDetailsWindow(foundCustomer);
 
-            RightViewBox.Children.Clear();
-
-            RightViewBox.VerticalAlignment = VerticalAlignment.Stretch;
-            RightViewBox.HorizontalAlignment = HorizontalAlignment.Stretch;
-
-            RightViewBox.Children.Add(customerDetailsWindow);
+            service.OnSubViewDetailsShow(customerDetailsWindow, RightViewBox);
         }
     }
 }

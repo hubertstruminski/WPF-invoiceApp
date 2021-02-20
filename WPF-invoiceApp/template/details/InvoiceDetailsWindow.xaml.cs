@@ -1,6 +1,6 @@
 ﻿using ClassLibrary;
-using System.Windows;
 using System.Windows.Controls;
+using WPF_invoiceApp.service;
 
 namespace WPF_invoiceApp.template.details
 {
@@ -9,6 +9,8 @@ namespace WPF_invoiceApp.template.details
     /// </summary>
     public partial class InvoiceDetailsWindow : UserControl
     {
+        private readonly InvoiceService service = new InvoiceService();
+
         public InvoiceDetailsWindow()
         {
             InitializeComponent();
@@ -27,23 +29,7 @@ namespace WPF_invoiceApp.template.details
             int count = 1;
             foreach(InvoiceProduct ip in selectedItem.InvoiceProducts)
             {
-                StackPanel stackPanel = new StackPanel();
-                stackPanel.Orientation = Orientation.Vertical;
-
-                TextBlock name = new TextBlock();
-                name.Text = count + ". " + ip.Product.Name;
-                name.FontWeight = FontWeights.Bold;
-                stackPanel.Children.Add(name);
-
-                TextBlock amount = new TextBlock();
-                amount.Text = "Amount: " + ip.Product.Amount;
-                stackPanel.Children.Add(amount);
-
-                TextBlock price = new TextBlock();
-                price.Text = "Price: " + ip.Product.Price + "$";
-                stackPanel.Children.Add(price);
-
-                scrollViewer.Children.Add(stackPanel);
+                scrollViewer.Children.Add(service.CreateProductStackPanel(ip, count));
                 count++;
             }
         }

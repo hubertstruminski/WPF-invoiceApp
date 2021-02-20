@@ -6,6 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.repository;
+using WPF_invoiceApp.service;
 using WPF_invoiceApp.template.details;
 
 namespace WPF_invoiceApp.template.dashboards
@@ -18,6 +20,11 @@ namespace WPF_invoiceApp.template.dashboards
         private readonly DatabaseContext _context;
         private readonly CollectionViewSource invoiceViewSource;
 
+        private readonly InvoiceRepository repository = new InvoiceRepository();
+        private readonly InvoiceProductsRepository invoiceProductsRepository = new InvoiceProductsRepository();
+        private readonly CustomerRepository customerRepository = new CustomerRepository();
+        private readonly InvoiceService service = new InvoiceService();
+
         public InvoiceWindow(DatabaseContext context)
         {
             _context = context;
@@ -27,8 +34,6 @@ namespace WPF_invoiceApp.template.dashboards
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _context.Database.EnsureCreated();
-
             _context.Customers.Load();
             _context.Taxes.Load();
             _context.Products.Load();
@@ -47,9 +52,7 @@ namespace WPF_invoiceApp.template.dashboards
             Invoice selectedItem = (Invoice) invoiceDataGrid.SelectedItem;
 
             _context.Invoices.Load();
-
-            _context.Invoices.Remove(selectedItem);
-            _context.SaveChanges();
+            repository.RemoveInvoice(selectedItem, _context);
 
             RefreshInvoiceGridData();
         }
@@ -61,9 +64,7 @@ namespace WPF_invoiceApp.template.dashboards
             _context.Invoices.Load();
             
             Invoice selectedItem = (Invoice) invoiceDataGrid.SelectedItem;
-
-            Customer customer = _context.Customers.Include("Address").Where(x => x.Id == selectedItem.Customer.Id).Single();
-            selectedItem.Customer = customer;
+            selectedItem.Customer = customerRepository.FindCustomerAddressById(selectedItem, _context);
 
             NewInvoiceWindow newInvoiceWindow = new NewInvoiceWindow(selectedItem, this, _context);
             newInvoiceWindow.ShowDialog();
@@ -86,20 +87,11 @@ namespace WPF_invoiceApp.template.dashboards
         {
             Invoice selectedItem = (Invoice)invoiceDataGrid.SelectedItem;
 
-            List<InvoiceProduct> invoiceProducts = _context.InvoiceProducts.Include("Product").Include("Invoice").Where(x => x.InvoiceId == selectedItem.Id).ToList();
-            Customer foundCustomer = _context.Customers.Include("Address").Where(x => x.Id == selectedItem.CustomerId).Single();
-
-            selectedItem.InvoiceProducts = invoiceProducts;
-            selectedItem.Customer = foundCustomer;
+            selectedItem.InvoiceProducts = invoiceProductsRepository.FindInvoiceProductsWithProductAndInvoiceById(selectedItem, _context);
+            selectedItem.Customer = customerRepository.FindCustomerAddressById(selectedItem, _context);
 
             InvoiceDetailsWindow invoiceDetailsWindow = new InvoiceDetailsWindow(selectedItem);
-
-            RightViewBox.Children.Clear();
-
-            RightViewBox.VerticalAlignment = VerticalAlignment.Stretch;
-            RightViewBox.HorizontalAlignment = HorizontalAlignment.Stretch;
-
-            RightViewBox.Children.Add(invoiceDetailsWindow);
+            service.OnSubViewDetailsShow(invoiceDetailsWindow, RightViewBox);
         }
     }
 }

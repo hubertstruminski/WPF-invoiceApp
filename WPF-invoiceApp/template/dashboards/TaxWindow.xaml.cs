@@ -4,6 +4,7 @@ using System.Windows.Data;
 using WPF_invoiceApp.context;
 using Microsoft.EntityFrameworkCore;
 using ClassLibrary;
+using WPF_invoiceApp.repository;
 
 namespace WPF_invoiceApp.template.dashboards
 {
@@ -15,6 +16,8 @@ namespace WPF_invoiceApp.template.dashboards
         private readonly DatabaseContext _context;
         private readonly CollectionViewSource taxViewSource;
 
+        private readonly TaxRepository repository = new TaxRepository();
+
         public TaxWindow(DatabaseContext context)
         {
             _context = context;
@@ -24,9 +27,7 @@ namespace WPF_invoiceApp.template.dashboards
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _context.Database.EnsureCreated();
             _context.Taxes.Load();
-
             taxViewSource.Source = _context.Taxes.Local.ToObservableCollection();
         }
 
@@ -41,8 +42,7 @@ namespace WPF_invoiceApp.template.dashboards
             _context.Taxes.Load();
 
             _context.Entry(selectedItem).State = EntityState.Detached;
-            _context.Taxes.Remove(selectedItem);
-            _context.SaveChanges();
+            repository.RemoveTax(selectedItem, _context);
 
             RefreshTaxGridData();
         }
