@@ -6,6 +6,12 @@ namespace WPF_invoiceApp.service
 {
     public class AddressService
     {
+        /// <summary>
+        /// Validate Address text field
+        /// </summary>
+        /// <param name="addressTextField">TextBox object</param>
+        /// <param name="addressErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateAddressTextField(TextBox addressTextField, Label addressErrorLabel)
         {
             bool isAddressEmpty = false;
@@ -38,6 +44,12 @@ namespace WPF_invoiceApp.service
             return (isAddressEmpty, isAddressError);
         }
 
+        /// <summary>
+        /// Validate Country text field
+        /// </summary>
+        /// <param name="countryTextField">TextBox object</param>
+        /// <param name="countryErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether error occurs in field</returns>
         public bool ValidateCountryTextField(TextBox countryTextField, Label countryErrorLabel)
         {
             bool isCountryError = false;

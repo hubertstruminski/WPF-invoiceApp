@@ -102,12 +102,20 @@ namespace WPF_invoiceApp.template
             }
         }
 
+        /// <summary>
+        /// Sets Customer object
+        /// </summary>
+        /// <param name="selectedItem">Customer object</param>
         public void SetCustomer(Customer selectedItem)
         {
             customer = selectedItem;
             addCustomerButton.Content = selectedItem.Name;
         }
 
+        /// <summary>
+        /// Adds Product object to List and assign value to button
+        /// </summary>
+        /// <param name="selectedItem">Selected Product object from DataGrid</param>
         public void SetProduct(Product selectedItem)
         {
             products.Add(selectedItem);

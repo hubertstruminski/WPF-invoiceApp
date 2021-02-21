@@ -61,6 +61,9 @@ namespace WPF_invoiceApp.template.dashboards
             newProductWindow.ShowDialog();
         }
 
+        /// <summary>
+        /// Refresh GridData view with Product objects
+        /// </summary>
         public void RefreshProductGridData()
         {
             _context.Customers.Load();

@@ -41,6 +41,9 @@ namespace WPF_invoiceApp.template.lists
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
 
+        /// <summary>
+        /// Refresh GridData view with Customer objects
+        /// </summary>
         public void RefreshCustomerGridData()
         {
             _context.Addresses.Load();

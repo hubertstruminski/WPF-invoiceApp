@@ -40,6 +40,9 @@ namespace WPF_invoiceApp.template.lists
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
 
+        /// <summary>
+        /// Refresh GridData view with Tax objects
+        /// </summary>
         public void RefreshTaxGridData()
         {
             _context.Taxes.Load();

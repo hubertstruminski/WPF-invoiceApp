@@ -9,6 +9,11 @@ namespace WPF_invoiceApp.service
     {
         private readonly MainWindowService service = new MainWindowService();
 
+        /// <summary>
+        /// Show details screen for invoice entity
+        /// </summary>
+        /// <param name="invoiceDetailsWindow">InvoiceDetailsWindow object</param>
+        /// <param name="RightViewBox">Grid object</param>
         public void OnSubViewDetailsShow(InvoiceDetailsWindow invoiceDetailsWindow, Grid RightViewBox)
         {
             RightViewBox.Children.Clear();
@@ -19,6 +24,12 @@ namespace WPF_invoiceApp.service
             RightViewBox.Children.Add(invoiceDetailsWindow);
         }
 
+        /// <summary>
+        /// Creates StackPanel for product entity details
+        /// </summary>
+        /// <param name="ip">InvoiceProduct object</param>
+        /// <param name="count">number element in sequence</param>
+        /// <returns>Returns StackPanel object with product details</returns>
         public StackPanel CreateProductStackPanel(InvoiceProduct ip, int count)
         {
             StackPanel stackPanel = new StackPanel();
@@ -31,6 +42,12 @@ namespace WPF_invoiceApp.service
             return stackPanel;
         }
 
+        /// <summary>
+        /// Validate Number text field
+        /// </summary>
+        /// <param name="numberTextField">TextBox object</param>
+        /// <param name="numberErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether field is empty</returns>
         public bool ValidateNumberTextField(TextBox numberTextField, Label numberErrorLabel)
         {
             bool isNumberEmpty = false;
@@ -51,6 +68,12 @@ namespace WPF_invoiceApp.service
             return isNumberEmpty;
         }
 
+        /// <summary>
+        /// Validate Customer text field
+        /// </summary>
+        /// <param name="addCustomerButton">Button object</param>
+        /// <param name="customerErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether field is empty</returns>
         public bool ValidateCustomerButton(Button addCustomerButton, Label customerErrorLabel)
         {
             bool isCustomerEmpty = false;
@@ -71,6 +94,12 @@ namespace WPF_invoiceApp.service
             return isCustomerEmpty;
         }
 
+        /// <summary>
+        /// Validate Product text field
+        /// </summary>
+        /// <param name="newAddressButton">Button object</param>
+        /// <param name="addressErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether field is empty</returns>
         public bool ValidateProductButton(Button listProductsButton, Label productErrorLabel)
         {
             bool isProductEmpty = false;

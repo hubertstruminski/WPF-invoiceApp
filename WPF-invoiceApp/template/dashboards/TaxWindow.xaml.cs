@@ -55,6 +55,9 @@ namespace WPF_invoiceApp.template.dashboards
             newTaxWindow.ShowDialog();
         }
 
+        /// <summary>
+        /// Refresh GridData view with Tax objects
+        /// </summary>
         public void RefreshTaxGridData()
         {
             taxDataGrid.ItemsSource = null;

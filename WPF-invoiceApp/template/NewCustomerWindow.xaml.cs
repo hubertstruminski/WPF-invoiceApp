@@ -87,6 +87,10 @@ namespace WPF_invoiceApp.template
             }
         }
 
+        /// <summary>
+        /// Sets Address object
+        /// </summary>
+        /// <param name="address">Address object</param>
         public void SetAddress(Address address)
         {
             this.address = address;

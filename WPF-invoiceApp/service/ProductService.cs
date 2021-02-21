@@ -8,6 +8,11 @@ namespace WPF_invoiceApp.service
 {
     public class ProductService
     {
+        /// <summary>
+        /// Shows details Window
+        /// </summary>
+        /// <param name="productDetailsWindow">ProductDetailsWindow object</param>
+        /// <param name="RightViewBox">Grid object where is injected details window</param>
         public void OnSubViewDetailsShow(ProductDetailsWindow productDetailsWindow, Grid RightViewBox)
         {
             RightViewBox.Children.Clear();
@@ -18,6 +23,12 @@ namespace WPF_invoiceApp.service
             RightViewBox.Children.Add(productDetailsWindow);
         }
 
+        /// <summary>
+        /// Creates TextBlock with Invoice details
+        /// </summary>
+        /// <param name="ip">InvoiceProduct object</param>
+        /// <param name="count">Number element in sequence</param>
+        /// <returns>Returns TextBlock object</returns>
         public TextBlock CreateInvoiceTextBlock(InvoiceProduct ip, int count)
         {
             TextBlock text = new TextBlock();
@@ -27,6 +38,12 @@ namespace WPF_invoiceApp.service
             return text;
         }
 
+        /// <summary>
+        /// Validate Name text field
+        /// </summary>
+        /// <param name="nameTextField">TextBox object</param>
+        /// <param name="nameErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateNameTextField(TextBox nameTextField, Label nameErrorLabel)
         {
             bool isNameEmpty = false;
@@ -59,6 +76,12 @@ namespace WPF_invoiceApp.service
             return (isNameEmpty, isNameError);
         }
 
+        /// <summary>
+        /// Validate Description text field
+        /// </summary>
+        /// <param name="descriptionTextField">TextBox object</param>
+        /// <param name="descriptionErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether field is empty</returns>
         public bool ValidateDescriptionTextField(TextBox descriptionTextField, Label descriptionErrorLabel)
         {
             bool isDescriptionEmpty = false;
@@ -77,6 +100,12 @@ namespace WPF_invoiceApp.service
             return isDescriptionEmpty;
         }
 
+        /// <summary>
+        /// Validate Price text field
+        /// </summary>
+        /// <param name="priceTextField">TextBox object</param>
+        /// <param name="priceErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidatePriceTextField(TextBox priceTextField, Label priceErrorLabel)
         {
             bool isPriceEmpty = false;
@@ -109,6 +138,12 @@ namespace WPF_invoiceApp.service
             return (isPriceEmpty, isPriceError);
         }
 
+        /// <summary>
+        /// Validate Discount text field
+        /// </summary>
+        /// <param name="discountTextField">TextBox object</param>
+        /// <param name="discountErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether error occurs in field</returns>
         public bool ValidateDiscountTextField(TextBox discountTextField, Label discountErrorLabel)
         {
             bool isDiscountError = false;
@@ -130,6 +165,12 @@ namespace WPF_invoiceApp.service
             return isDiscountError;
         }
 
+        /// <summary>
+        /// Validate Amount text field
+        /// </summary>
+        /// <param name="amountTextField">TextBox object</param>
+        /// <param name="amountErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateAmountTextField(TextBox amountTextField, Label amountErrorLabel)
         {
             bool isAmountEmpty = false;
@@ -162,6 +203,12 @@ namespace WPF_invoiceApp.service
             return (isAmountEmpty, isAmountError);
         }
 
+        /// <summary>
+        /// Validate Unit text field
+        /// </summary>
+        /// <param name="unitTextField">TextBox object</param>
+        /// <param name="unitErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateUnitTextField(TextBox unitTextField, Label unitErrorLabel)
         {
             bool isUnitEmpty = false;
@@ -194,6 +241,12 @@ namespace WPF_invoiceApp.service
             return (isUnitEmpty, isUnitError);
         }
 
+        /// <summary>
+        /// Validate AddTax button
+        /// </summary>
+        /// <param name="addTaxButton">Button object</param>
+        /// <param name="taxErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether field is empty</returns>
         public bool ValidateAddTaxButton(Button addTaxButton, Label taxErrorLabel)
         {
             bool isTaxEmpty = false;

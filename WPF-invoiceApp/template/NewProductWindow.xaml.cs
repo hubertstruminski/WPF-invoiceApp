@@ -83,6 +83,10 @@ namespace WPF_invoiceApp.template
             }
         }
 
+        /// <summary>
+        /// Sets Tax object
+        /// </summary>
+        /// <param name="newItem">Tax object</param>
         public void SetTax(Tax newItem)
         {
             tax = newItem;

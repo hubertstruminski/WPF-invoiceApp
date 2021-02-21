@@ -21,7 +21,7 @@ namespace WPF_invoiceApp.repository
         /// </summary>
         /// <param name="company">New Company object</param>
         /// <param name="context">DbContext object</param>
-        /// <param name="isUpdate">isUpdate specify add or update entity</param>
+        /// <param name="isUpdate">isUpdate specify whether add or update entity</param>
         public void AddCompany(Company company, DatabaseContext context, bool isUpdate)
         {
             if (isUpdate)

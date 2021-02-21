@@ -61,6 +61,9 @@ namespace WPF_invoiceApp.template.dashboards
             newCustomerWindow.ShowDialog();
         }
 
+        /// <summary>
+        /// Refresh GridData view with Customer objects
+        /// </summary>
         public void RefreshCustomerGridData()
         {
             _context.Customers.Load();

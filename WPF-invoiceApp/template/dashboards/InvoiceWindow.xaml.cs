@@ -70,6 +70,9 @@ namespace WPF_invoiceApp.template.dashboards
             newInvoiceWindow.ShowDialog();
         }
 
+        /// <summary>
+        /// Refresh GridData view with Invoice objects
+        /// </summary>
         public void RefreshInvoiceGridData()
         {
             _context.Invoices.Load();

@@ -6,6 +6,12 @@ namespace WPF_invoiceApp.service
 {
     public class TaxService
     {
+        /// <summary>
+        /// Validate Tax Name text field
+        /// </summary>
+        /// <param name="nameTextField">TextBox object</param>
+        /// <param name="taxNameErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether error occurs in field</returns>
         public bool ValidateTaxNameTextField(TextBox nameTextField, Label taxNameErrorLabel)
         {
             bool isTaxNameError = false;
@@ -24,6 +30,12 @@ namespace WPF_invoiceApp.service
             return isTaxNameError;
         }
 
+        /// <summary>
+        /// Validate Tax Description text field
+        /// </summary>
+        /// <param name="descriptionTextField">TextBox object</param>
+        /// <param name="taxDescriptionErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether error occurs in field</returns>
         public bool ValidateTaxDescriptionTextField(TextBox descriptionTextField, Label taxDescriptionErrorLabel)
         {
             bool isTaxDescriptionError = false;
@@ -42,6 +54,12 @@ namespace WPF_invoiceApp.service
             return isTaxDescriptionError;
         }
 
+        /// <summary>
+        /// Validate Tax Amount text field
+        /// </summary>
+        /// <param name="taxAmountTextField">TextBox object</param>
+        /// <param name="taxAmountErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether error occurs in field</returns>
         public bool ValidateTaxAmountTextField(TextBox taxAmountTextField, Label taxAmountErrorLabel)
         {
             bool isTaxAmountError = false;

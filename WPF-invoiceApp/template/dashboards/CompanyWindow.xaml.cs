@@ -57,6 +57,9 @@ namespace WPF_invoiceApp.template.dashboards
             newCompanyWindow.ShowDialog();
         }
 
+        /// <summary>
+        /// Refresh GridData view with Company objects
+        /// </summary>
         public void RefreshCompanyGridData()
         {
             _context.Companies.Load();

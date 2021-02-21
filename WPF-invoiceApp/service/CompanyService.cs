@@ -7,6 +7,11 @@ namespace WPF_invoiceApp.service
 {
     public class CompanyService
     {
+        /// <summary>
+        /// Show details screen for company entity
+        /// </summary>
+        /// <param name="companyDetailsWindow">CompanyDetailsWindow object</param>
+        /// <param name="RightViewBox">Grid object</param>
         public void OnSubViewDetailsShow(CompanyDetailsWindow companyDetailsWindow, Grid RightViewBox)
         {
             RightViewBox.Children.Clear();
@@ -17,6 +22,12 @@ namespace WPF_invoiceApp.service
             RightViewBox.Children.Add(companyDetailsWindow);
         }
 
+        /// <summary>
+        /// Validate Company Name text field
+        /// </summary>
+        /// <param name="companyNameTextField">TextBox object</param>
+        /// <param name="companyNameErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateCompanyNameTextField(TextBox companyNameTextField, Label companyNameErrorLabel)
         {
             bool isCompanyNameEmpty = false;
@@ -49,6 +60,12 @@ namespace WPF_invoiceApp.service
             return (isCompanyNameEmpty, isCompanyNameError);
         }
 
+        /// <summary>
+        /// Validate Address text field
+        /// </summary>
+        /// <param name="addressTextField">TextBox object</param>
+        /// <param name="addressErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateAddressTextField(TextBox addressTextField, Label addressErrorLabel)
         {
             bool isAddressEmpty = false;
@@ -81,6 +98,12 @@ namespace WPF_invoiceApp.service
             return (isAddressEmpty, isAddressError);
         }
 
+        /// <summary>
+        /// Validate Postalcode text field
+        /// </summary>
+        /// <param name="postalcodeTextField">TextBox object</param>
+        /// <param name="postalcodeErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidatePostalcodeTextField(TextBox postalcodeTextField, Label postalcodeErrorLabel)
         {
             bool isPostalCodeEmpty = false;
@@ -113,6 +136,12 @@ namespace WPF_invoiceApp.service
             return (isPostalCodeEmpty, isPostalCodeError);
         }
 
+        /// <summary>
+        /// Validate City text field
+        /// </summary>
+        /// <param name="cityTextField">TextBox object</param>
+        /// <param name="cityErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateCityTextField(TextBox cityTextField, Label cityErrorLabel)
         {
             bool isCityEmpty = false;
@@ -145,6 +174,12 @@ namespace WPF_invoiceApp.service
             return (isCityEmpty, isCityError);
         }
 
+        /// <summary>
+        /// Validate Country text field
+        /// </summary>
+        /// <param name="countryTextField">TextBox object</param>
+        /// <param name="countryErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateCountryTextField(TextBox countryTextField, Label countryErrorLabel)
         {
             bool isCountryEmpty = false;

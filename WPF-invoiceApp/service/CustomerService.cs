@@ -11,6 +11,11 @@ namespace WPF_invoiceApp.service
     {
         private readonly MainWindowService service = new MainWindowService();
 
+        /// <summary>
+        /// Show details screen for customer entity
+        /// </summary>
+        /// <param name="customerDetailsWindow">CustomerDetailsWindow object</param>
+        /// <param name="RightViewBox">Grid object</param>
         public void OnSubViewDetailsShow(CustomerDetailsWindow customerDetailsWindow, Grid RightViewBox)
         {
             RightViewBox.Children.Clear();
@@ -21,6 +26,11 @@ namespace WPF_invoiceApp.service
             RightViewBox.Children.Add(customerDetailsWindow);
         }
 
+        /// <summary>
+        /// Creates Grid for invoice entity details
+        /// </summary>
+        /// <param name="invoice">Invoice object</param>
+        /// <returns>Returns Grid object with invoice details</returns>
         public Grid CreateInvoiceGrid(Invoice invoice)
         {
             Grid grid = new Grid();
@@ -76,6 +86,12 @@ namespace WPF_invoiceApp.service
             return grid;
         }
 
+        /// <summary>
+        /// Validate Name text field
+        /// </summary>
+        /// <param name="nameTextField">TextBox object</param>
+        /// <param name="nameErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateNameTextField(TextBox nameTextField, Label nameErrorLabel)
         {
             bool isNameEmpty = false;
@@ -108,6 +124,12 @@ namespace WPF_invoiceApp.service
             return (isNameEmpty, isNameError);
         }
 
+        /// <summary>
+        /// Validate Email text field
+        /// </summary>
+        /// <param name="emailTextField">TextBox object</param>
+        /// <param name="emailErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateEmailTextField(TextBox emailTextField, Label emailErrorLabel)
         {
             bool isEmailEmpty = false;
@@ -140,6 +162,12 @@ namespace WPF_invoiceApp.service
             return (isEmailEmpty, isEmailError);
         }
 
+        /// <summary>
+        /// Validate New Address text field
+        /// </summary>
+        /// <param name="newAddressButton">Button object</param>
+        /// <param name="addressErrorLabel">Label object</param>
+        /// <returns>Returns boolean value which specify whether error occurs in field</returns>
         public bool ValidateNewAddressButton(Button newAddressButton, Label addressErrorLabel)
         {
             bool isNewAddressEmpty = false;
@@ -160,6 +188,12 @@ namespace WPF_invoiceApp.service
             return isNewAddressEmpty;
         }
 
+        /// <summary>
+        /// Validate Nip text field
+        /// </summary>
+        /// <param name="nipTextField">TextBox object</param>
+        /// <param name="nipErrorLabel">Label object</param>
+        /// <returns>Returns two boolean variable which specify whether field is empty or error occurs</returns>
         public (bool, bool) ValidateNipTextField(TextBox nipTextField, Label nipErrorLabel)
         {
             bool isNipEmpty = false;
