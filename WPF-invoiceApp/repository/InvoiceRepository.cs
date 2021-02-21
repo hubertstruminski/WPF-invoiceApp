@@ -1,9 +1,4 @@
 ﻿using ClassLibrary;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using WPF_invoiceApp.context;
 
 namespace WPF_invoiceApp.repository
@@ -14,6 +9,16 @@ namespace WPF_invoiceApp.repository
         {
             _context.Invoices.Remove(selectedItem);
             _context.SaveChanges();
+        }
+
+        public void AddInvoice(Invoice invoice, DatabaseContext context, bool isUpdateFlag)
+        {
+            if (isUpdateFlag)
+                context.Invoices.Update(invoice);
+            else
+                context.Invoices.Add(invoice);
+
+            context.SaveChanges();
         }
     }
 }

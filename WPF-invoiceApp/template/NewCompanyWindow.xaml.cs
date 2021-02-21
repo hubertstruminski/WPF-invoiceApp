@@ -1,7 +1,8 @@
 ﻿using ClassLibrary;
-using System.Text.RegularExpressions;
 using System.Windows;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.repository;
+using WPF_invoiceApp.service;
 using WPF_invoiceApp.template.dashboards;
 
 namespace WPF_invoiceApp.template
@@ -17,11 +18,13 @@ namespace WPF_invoiceApp.template
 
         private Company company;
 
+        private readonly CompanyService service = new CompanyService();
+        private readonly CompanyRepository repository = new CompanyRepository();
+
         public NewCompanyWindow(DatabaseContext context)
         {
             this.context = context;
             InitializeComponent();
-            context.Database.EnsureCreated();
         }
 
         public NewCompanyWindow(CompanyWindow companyWindow, DatabaseContext context) : this(context)
@@ -44,142 +47,13 @@ namespace WPF_invoiceApp.template
 
         private void OnNewCompanySaveButton(object sender, RoutedEventArgs e)
         {
-            bool isCompanyNameEmpty = false;
-            bool isCompanyNameError = false;
+            (bool isCompanyNameEmpty, bool isCompanyNameError) = service.ValidateCompanyNameTextField(companyNameTextField, companyNameErrorLabel);
+            (bool isAddressEmpty, bool isAddressError) = service.ValidateAddressTextField(addressTextField, addressErrorLabel);
+            (bool isPostalCodeEmpty, bool isPostalCodeError) = service.ValidatePostalcodeTextField(postalcodeTextField, postalcodeErrorLabel);
+            (bool isCityEmpty, bool isCityError) = service.ValidateCityTextField(cityTextField, cityErrorLabel);
+            (bool isCountryEmpty, bool isCountryError) = service.ValidateCountryTextField(countryTextField, countryErrorLabel);
 
-            bool isAddressEmpty = false;
-            bool isAddressError = false;
-
-            bool isPostalCodeEmpty = false;
-            bool isPostalCodeError = false;
-
-            bool isCityEmpty = false;
-            bool isCityError = false;
-
-            bool isCountryEmpty = false;
-            bool isCountryError = false;
-
-            if (companyNameTextField.Text.Length == 0)
-                isCompanyNameEmpty = true;
-            else
-            {
-                if (!new Regex(".{1,255}").IsMatch(companyNameTextField.Text))
-                    isCompanyNameError = true;
-            }
-
-            if (addressTextField.Text.Length == 0)
-                isAddressEmpty = true;
-            else
-            {
-                if (!new Regex(".{1,255}").IsMatch(addressTextField.Text))
-                    isAddressError = true;
-            }
-
-            if (postalcodeTextField.Text.Length == 0)
-                isPostalCodeEmpty = true;
-            else
-            {
-                if (!new Regex(".{1,255}").IsMatch(postalcodeTextField.Text))
-                    isPostalCodeError = true;
-            }
-
-            if (cityTextField.Text.Length == 0)
-                isCityEmpty = true;
-            else
-            {
-                if (!new Regex(".{1,255}").IsMatch(cityTextField.Text))
-                    isCityError = true;
-            }
-
-            if (countryTextField.Text.Length == 0)
-                isCountryEmpty = true;
-            else
-            {
-                if (!new Regex(".{1,255}").IsMatch(countryTextField.Text))
-                    isCountryError = true;
-            }
-
-            if (isCompanyNameEmpty)
-            {
-                companyNameErrorLabel.Visibility = Visibility.Visible;
-                companyNameErrorLabel.Content = "Company name is required.";
-            }
-            else
-            {
-                if (isCompanyNameError)
-                {
-                    companyNameErrorLabel.Visibility = Visibility.Visible;
-                    companyNameErrorLabel.Content = "Required length is from 1 to 255 characters.";
-                }
-                else
-                    companyNameErrorLabel.Content = "";
-            }
-
-            if (isAddressEmpty)
-            {
-                addressErrorLabel.Visibility = Visibility.Visible;
-                addressErrorLabel.Content = "Address is required.";
-            }
-            else
-            {
-                if (isAddressError)
-                {
-                    addressErrorLabel.Visibility = Visibility.Visible;
-                    addressErrorLabel.Content = "Required length is from 1 to 255 characters.";
-                }
-                else
-                    addressErrorLabel.Content = "";
-            }
-
-            if (isPostalCodeEmpty)
-            {
-                postalcodeErrorLabel.Visibility = Visibility.Visible;
-                postalcodeErrorLabel.Content = "PostalCode is required.";
-            }
-            else
-            {
-                if (isPostalCodeError)
-                {
-                    postalcodeErrorLabel.Visibility = Visibility.Visible;
-                    postalcodeErrorLabel.Content = "Required length is from 1 to 255 characters.";
-                }
-                else
-                    postalcodeErrorLabel.Content = "";
-            }
-
-            if (isCityEmpty)
-            {
-                cityErrorLabel.Visibility = Visibility.Visible;
-                cityErrorLabel.Content = "City is required.";
-            }
-            else
-            {
-                if (isCityError)
-                {
-                    cityErrorLabel.Visibility = Visibility.Visible;
-                    cityErrorLabel.Content = "Required length is from 1 to 255 characters.";
-                }
-                else
-                    cityErrorLabel.Content = "";
-            }
-
-            if (isCountryEmpty)
-            {
-                countryErrorLabel.Visibility = Visibility.Visible;
-                countryErrorLabel.Content = "Country is required.";
-            }
-            else
-            {
-                if (isCountryError)
-                {
-                    countryErrorLabel.Visibility = Visibility.Visible;
-                    countryErrorLabel.Content = "Required length is from 1 to 255 characters.";
-                }
-                else
-                    countryErrorLabel.Content = "";
-            }
-
-            if(isUpdateFlag)
+            if (isUpdateFlag)
             {
                 isCompanyNameEmpty = false;
                 isAddressEmpty = false;
@@ -201,14 +75,10 @@ namespace WPF_invoiceApp.template
                 company.Country = countryTextField.Text;
                 company.PostalCode = postalcodeTextField.Text;
 
-                if (isUpdateFlag)
-                    context.Companies.Update(company);
-                else
-                    context.Companies.Add(company);
+                repository.AddCompany(company, context, isUpdateFlag);
 
-                context.SaveChanges();
                 companyWindow.RefreshCompanyGridData();
-                this.Close();
+                Close();
             }
         }   
 

@@ -22,5 +22,15 @@ namespace WPF_invoiceApp.repository
         {
             return _context.Customers.Include("Address").Where(x => x.Id == selectedItem.Customer.Id).Single();
         }
+
+        public void AddCustomer(Customer customer, DatabaseContext context, bool isUpdateFlag)
+        {
+            if (isUpdateFlag)
+                context.Customers.Update(customer);
+            else
+                context.Customers.Add(customer);
+
+            context.SaveChanges();
+        }
     }
 }

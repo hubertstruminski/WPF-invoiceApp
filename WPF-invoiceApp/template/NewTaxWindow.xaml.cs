@@ -1,7 +1,8 @@
 ﻿using ClassLibrary;
-using System.Text.RegularExpressions;
 using System.Windows;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.repository;
+using WPF_invoiceApp.service;
 using WPF_invoiceApp.template.dashboards;
 
 namespace WPF_invoiceApp.template
@@ -17,11 +18,13 @@ namespace WPF_invoiceApp.template
 
         private Tax tax;
 
+        private readonly TaxService service = new TaxService();
+        private readonly TaxRepository repository = new TaxRepository();
+
         public NewTaxWindow(DatabaseContext context)
         {
             this.context = context;
             InitializeComponent();
-            context.Database.EnsureCreated();
         }
 
         public NewTaxWindow(TaxWindow taxWindow, DatabaseContext context) : this(context)
@@ -41,42 +44,9 @@ namespace WPF_invoiceApp.template
 
         private void NewTaxSaveButton_Click(object sender, RoutedEventArgs e)
         {
-            bool isTaxNameError = false;
-            bool isTaxDescriptionError = false;
-            bool isTaxAmountError = false;
-
-            if (!new Regex(".{1,255}").IsMatch(nameTextField.Text))
-                isTaxNameError = true;
-
-            if (!new Regex(".{0,255}").IsMatch(descriptionTextField.Text))
-                isTaxDescriptionError = true;
-
-            if (!new Regex("[0-9]+%$").IsMatch(taxAmountTextField.Text))
-                isTaxAmountError = true;
-
-            if (isTaxNameError)
-            {
-                taxNameErrorLabel.Visibility = Visibility.Visible;
-                taxNameErrorLabel.Content = "Name length must be from 1 to 255 characters.";
-            }
-            else
-                taxNameErrorLabel.Content = "";
-
-            if (isTaxDescriptionError)
-            {
-                taxDescriptionErrorLabel.Visibility = Visibility.Visible;
-                taxDescriptionErrorLabel.Content = "Maximum length is 255 characters.";
-            }
-            else
-                taxDescriptionErrorLabel.Content = "";
-
-            if (isTaxAmountError)
-            {
-                taxAmountErrorLabel.Visibility = Visibility.Visible;
-                taxAmountErrorLabel.Content = "Incorrect format, e.g. 23%";
-            }
-            else
-                taxAmountErrorLabel.Content = "";
+            bool isTaxNameError = service.ValidateTaxNameTextField(nameTextField, taxNameErrorLabel);
+            bool isTaxDescriptionError = service.ValidateTaxDescriptionTextField(descriptionTextField, taxDescriptionErrorLabel);
+            bool isTaxAmountError = service.ValidateTaxAmountTextField(taxAmountTextField, taxAmountErrorLabel);
 
             if(!isTaxNameError && !isTaxDescriptionError && !isTaxAmountError)
             {
@@ -86,14 +56,9 @@ namespace WPF_invoiceApp.template
                 tax.Description = descriptionTextField.Text;
                 tax.TaxAmount = taxAmountTextField.Text;
 
-                if (isUpdateFlag)
-                    context.Taxes.Update(tax);
-                else
-                    context.Taxes.Add(tax);
-                
-                context.SaveChanges();
+                repository.AddTax(tax, context, isUpdateFlag);
                 taxWindow.RefreshTaxGridData();
-                this.Close();   
+                Close();   
             }
         }
     }

@@ -1,7 +1,5 @@
 ﻿using ClassLibrary;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using WPF_invoiceApp.service;
 
 namespace WPF_invoiceApp.template.details

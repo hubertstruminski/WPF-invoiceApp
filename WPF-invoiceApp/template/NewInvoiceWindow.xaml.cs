@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.repository;
+using WPF_invoiceApp.service;
 using WPF_invoiceApp.template.dashboards;
 using WPF_invoiceApp.template.lists;
 
@@ -21,11 +23,13 @@ namespace WPF_invoiceApp.template
 
         private Customer customer;
 
+        private readonly InvoiceService service = new InvoiceService();
+        private readonly InvoiceRepository repository = new InvoiceRepository();
+
         public NewInvoiceWindow(DatabaseContext context)
         {
             this.context = context;
             InitializeComponent();
-            context.Database.EnsureCreated();
             customer = new Customer();
             invoice = new Invoice();
             products = new List<Product>();
@@ -67,48 +71,9 @@ namespace WPF_invoiceApp.template
 
         private void OnSaveInvoiceButtonAction(object sender, RoutedEventArgs e)
         {
-            bool isNumberEmpty = false;
-            bool isCustomerEmpty = false;
-            bool isProductEmpty = false;
-
-            if (numberTextField.Text.Length == 0)
-                isNumberEmpty = true;
-
-            if (addCustomerButton.Content.Equals(">"))
-                isCustomerEmpty = true;
-
-            if (listProductsButton.Content.Equals(""))
-                isProductEmpty = true;
-
-            if(isNumberEmpty)
-            {
-                numberErrorLabel.Visibility = Visibility.Visible;
-                numberErrorLabel.Content = "Number is required.";
-            } 
-            else
-            {
-                numberErrorLabel.Content = "";
-            }
-
-            if(isCustomerEmpty)
-            {
-                customerErrorLabel.Visibility = Visibility.Visible;
-                customerErrorLabel.Content = "Customer is required.";
-            }
-            else
-            {
-                customerErrorLabel.Content = "";
-            }
-
-            if(isProductEmpty)
-            {
-                productErrorLabel.Visibility = Visibility.Visible;
-                productErrorLabel.Content = "Product is required.";
-            }
-            else
-            {
-                productErrorLabel.Content = "";
-            }
+            bool isNumberEmpty = service.ValidateNumberTextField(numberTextField, numberErrorLabel);
+            bool isCustomerEmpty = service.ValidateCustomerButton(addCustomerButton, customerErrorLabel);
+            bool isProductEmpty = service.ValidateProductButton(listProductsButton, productErrorLabel);
 
             if(!isNumberEmpty && !isCustomerEmpty && !isProductEmpty)
             {
@@ -131,15 +96,9 @@ namespace WPF_invoiceApp.template
                     invoice.InvoiceProducts.Add(ip);
                 }
 
-                if (isUpdateFlag)
-                    context.Invoices.Update(invoice);
-                else
-                    context.Invoices.Add(invoice);
-
-                context.SaveChanges();
+                repository.AddInvoice(invoice, context, isUpdateFlag);
                 invoiceWindow.RefreshInvoiceGridData();
-
-                this.Close();
+                Close();
             }
         }
 

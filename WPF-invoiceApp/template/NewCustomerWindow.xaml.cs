@@ -1,7 +1,8 @@
 ﻿using ClassLibrary;
-using System.Text.RegularExpressions;
 using System.Windows;
 using WPF_invoiceApp.context;
+using WPF_invoiceApp.repository;
+using WPF_invoiceApp.service;
 using WPF_invoiceApp.template.dashboards;
 
 namespace WPF_invoiceApp.template
@@ -18,11 +19,13 @@ namespace WPF_invoiceApp.template
         private Customer customer;
         private Address address;
 
+        private readonly CustomerService service = new CustomerService();
+        private readonly CustomerRepository repository = new CustomerRepository();
+
         public NewCustomerWindow(DatabaseContext context)
         {
             this.context = context;
             InitializeComponent();
-            context.Database.EnsureCreated();
             address = new Address();
         }
 
@@ -50,101 +53,10 @@ namespace WPF_invoiceApp.template
 
         private void OnNewCustomerSaveButtonAction(object sender, RoutedEventArgs e)
         {
-            bool isNameEmpty = false;
-            bool isNameError = false;
-
-            bool isEmailEmpty = false;
-            bool isEmailError = false;
-
-            bool isNewAddressEmpty = false;
-
-            bool isNipEmpty = false;
-            bool isNipError = false;
-
-            if (nameTextField.Text.Length == 0)
-                isNameEmpty = true;
-            else
-            {
-                if (!new Regex(".{1,255}").IsMatch(nameTextField.Text))
-                    isNameError = true;
-            }
-
-            if (emailTextField.Text.Length == 0)
-                isEmailEmpty = true;
-            else
-            {
-                if(!new Regex(".{1,255}").IsMatch(emailTextField.Text))
-                    isEmailError = true;
-            }
-
-            if (newAddressButton.Content.Equals(">"))
-                isNewAddressEmpty = true;
-
-            if (nipTextField.Text.Length == 0)
-                isNipEmpty = true;
-            else
-            {
-                if (!new Regex(".{1,255}").IsMatch(emailTextField.Text))
-                    isNipError = true;
-            }
-
-            if (isNameEmpty)
-            {
-                nameErrorLabel.Visibility = Visibility.Visible;
-                nameErrorLabel.Content = "Name is required.";
-            }
-            else
-            {
-                if (isNameError)
-                {
-                    nameErrorLabel.Visibility = Visibility.Visible;
-                    nameErrorLabel.Content = "Required length is from 1 to 255 characters.";
-                }
-                else
-                    nameErrorLabel.Content = "";
-            }
-
-            if (isEmailEmpty)
-            {
-                emailErrorLabel.Visibility = Visibility.Visible;
-                emailErrorLabel.Content = "Email is required.";
-            }
-            else
-            {
-                if (isEmailError)
-                {
-                    emailErrorLabel.Visibility = Visibility.Visible;
-                    emailErrorLabel.Content = "Required length is from 1 to 255 characters.";
-                }
-                else
-                    emailErrorLabel.Content = "";
-            }
-
-            if (isNewAddressEmpty)
-            {
-                addressErrorLabel.Visibility = Visibility.Visible;
-                addressErrorLabel.Content = "Address is required.";
-            }
-            else
-            {
-                addressErrorLabel.Content = "";
-            }
-
-            if (isNipEmpty)
-            {
-                nipErrorLabel.Visibility = Visibility.Visible;
-                nipErrorLabel.Content = "NIP is required.";
-            }
-            else
-            {
-                if (isNipError)
-                {
-                    nipErrorLabel.Visibility = Visibility.Visible;
-                    nipErrorLabel.Content = "Required length is from 1 to 255 characters.";
-                }
-                else
-                    nipErrorLabel.Content = "";
-            }
+            (bool isNameEmpty, bool isNameError) = service.ValidateNameTextField(nameTextField, nameErrorLabel);
+            (bool isEmailEmpty, bool isEmailError) = service.ValidateEmailTextField(emailTextField, emailErrorLabel);
+            bool isNewAddressEmpty = service.ValidateNewAddressButton(newAddressButton, addressErrorLabel);
+            (bool isNipEmpty, bool isNipError) = service.ValidateNipTextField(nipTextField, nipErrorLabel);
 
             if (isUpdateFlag)
             {
@@ -169,15 +81,9 @@ namespace WPF_invoiceApp.template
                 customer.Nip = nipTextField.Text;
                 customer.Note = noteTextField.Text;
 
-                if (isUpdateFlag)
-                    context.Customers.Update(customer);
-                else
-                    context.Customers.Add(customer);
-
-                context.SaveChanges();
+                repository.AddCustomer(customer, context, isUpdateFlag);
                 customerWindow.RefreshCustomerGridData();
-
-                this.Close();
+                Close();
             }
         }
 

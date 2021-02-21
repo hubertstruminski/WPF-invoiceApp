@@ -1,7 +1,4 @@
 ﻿using ClassLibrary;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using WPF_invoiceApp.template.details;
@@ -32,6 +29,66 @@ namespace WPF_invoiceApp.service
             service.CreateTextBlock(stackPanel, "Price: " + ip.Product.Price + "$");
 
             return stackPanel;
+        }
+
+        public bool ValidateNumberTextField(TextBox numberTextField, Label numberErrorLabel)
+        {
+            bool isNumberEmpty = false;
+
+            if (numberTextField.Text.Length == 0)
+                isNumberEmpty = true;
+
+            if (isNumberEmpty)
+            {
+                numberErrorLabel.Visibility = Visibility.Visible;
+                numberErrorLabel.Content = "Number is required.";
+            }
+            else
+            {
+                numberErrorLabel.Content = "";
+            }
+
+            return isNumberEmpty;
+        }
+
+        public bool ValidateCustomerButton(Button addCustomerButton, Label customerErrorLabel)
+        {
+            bool isCustomerEmpty = false;
+
+            if (addCustomerButton.Content.Equals(">"))
+                isCustomerEmpty = true;
+
+            if (isCustomerEmpty)
+            {
+                customerErrorLabel.Visibility = Visibility.Visible;
+                customerErrorLabel.Content = "Customer is required.";
+            }
+            else
+            {
+                customerErrorLabel.Content = "";
+            }
+
+            return isCustomerEmpty;
+        }
+
+        public bool ValidateProductButton(Button listProductsButton, Label productErrorLabel)
+        {
+            bool isProductEmpty = false;
+
+            if (listProductsButton.Content.Equals(""))
+                isProductEmpty = true;
+
+            if (isProductEmpty)
+            {
+                productErrorLabel.Visibility = Visibility.Visible;
+                productErrorLabel.Content = "Product is required.";
+            }
+            else
+            {
+                productErrorLabel.Content = "";
+            }
+
+            return isProductEmpty;
         }
     }
 }
